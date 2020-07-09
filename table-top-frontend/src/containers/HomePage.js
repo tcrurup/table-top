@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../actions/userActions.js'
 import LoginInput from '../components/homePage/LoginInput.js'
+import { loginUrl } from '../backendRouting.js'
 
 class HomePage extends Component{
 
@@ -22,7 +23,7 @@ class HomePage extends Component{
             }
         }
 
-        fetch('http://localhost:3001/users/login', config)
+        fetch(loginUrl(), config)
         .then( response => response.json() )
         .then( object => console.log(object))
     }

@@ -10,7 +10,7 @@ class LoginInput extends Component{
         }
     }
 
-    clearFields = () => { this.setState({ username: '', password: ''}) }
+    clearFields = () => this.setState({ username: '', password: ''})
 
     handleChange = event => {
         event.preventDefault()
@@ -22,6 +22,7 @@ class LoginInput extends Component{
     handleSubmit = event => {
         event.preventDefault()
         const formData = {...this.state}
+        console.log(`submitting login attempt with > username: ${formData.username} | password: ${formData.password}`)
         this.props.submit(formData)
         this.clearFields()
     }
