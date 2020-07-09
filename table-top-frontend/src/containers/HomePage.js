@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import LoginInput from '../components/homePage/LoginInput.js'
 
 class HomePage extends Component{
 
@@ -28,6 +29,7 @@ class HomePage extends Component{
         return(
             <div>
                 {`Hello ${this.state.user}`}
+                < LoginInput />
             </div>
         )
     }
