@@ -10,9 +10,10 @@ class LoginInput extends Component{
         }
     }
 
+    clearFields = () => { this.setState({ username: '', password: ''}) }
+
     handleChange = event => {
         event.preventDefault()
-        console.log(`setting ${event.target.id} state to ${event.target.value}`)
         this.setState({
             [event.target.id]: event.target.value
         })
@@ -21,10 +22,7 @@ class LoginInput extends Component{
     handleSubmit = event => {
         event.preventDefault()
         const formData = {...this.state}
-        this.setState({
-            username: '',
-            password: ''
-        })
+        this.clearFields()
     }
 
     render(){
