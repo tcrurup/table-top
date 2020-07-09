@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../actions/userActions.js'
 import LoginInput from '../components/homePage/LoginInput.js'
-import { loginUrl } from '../backendRouting.js'
 
 class HomePage extends Component{
 
@@ -13,20 +12,6 @@ class HomePage extends Component{
         }
     }
 
-    componentDidMount(){
-
-        const config = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        }
-
-        fetch(loginUrl(), config)
-        .then( response => response.json() )
-        .then( object => console.log(object))
-    }
 
     render(){
         return(
