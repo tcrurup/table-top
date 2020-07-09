@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { attemptLogin } from '../actions/userActions.js'
 import LoginInput from '../components/homePage/LoginInput.js'
 
 class HomePage extends Component{
@@ -29,10 +31,16 @@ class HomePage extends Component{
         return(
             <div>
                 {`Hello ${this.state.user}`}
-                < LoginInput />
+                < LoginInput submit={this.props.attemptLogin}/>
             </div>
         )
     }
 }
 
-export default HomePage
+const mapDispatchToProps = dispatch => {
+    return{
+        attemptLogin: userCredentials => dispatch(attemptLogin(userCredentials))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(HomePage)

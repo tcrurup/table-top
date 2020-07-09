@@ -22,6 +22,7 @@ class LoginInput extends Component{
     handleSubmit = event => {
         event.preventDefault()
         const formData = {...this.state}
+        this.props.submit(formData)
         this.clearFields()
     }
 
