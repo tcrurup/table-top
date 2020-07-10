@@ -44,7 +44,7 @@ class LoginInput extends Component{
         event.preventDefault()
         const formData = {...this.state}
         console.log(`submitting login attempt with > username: ${formData.username} | password: ${formData.password}`)
-        this.props.submit(formData)
+        this.props.submit({ user: formData })
         this.clearFields()
     }
 
