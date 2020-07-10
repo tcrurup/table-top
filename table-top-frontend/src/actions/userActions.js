@@ -13,12 +13,10 @@ export function attemptLogin(loginData){
             body: JSON.stringify(loginData)
         }
         
-        dispatch({ type:"START_ATTEMPT_LOGIN"})
+        dispatch({ type:"ATTEMPT_LOGIN"})
         
         fetch(loginUrl(), data)
         .then(response => response.json())
-        .then(object => console.log(object))
+        .then(object => dispatch({ type:"LOGIN_SUCCESS", credentials: object }))
     }
-    console.log(`dispatching ATTEMPT_LOGIN for ${loginData.user.username}` )
-    return { type: 'ATTEMPT_LOGIN', credentials: loginData }
 }

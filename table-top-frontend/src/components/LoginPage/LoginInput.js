@@ -49,14 +49,6 @@ class LoginInput extends Component{
         this.clearFields()
     }
 
-    disableForm = () => {
-        document.getElementById('form-login')
-    }
-
-    enableForm = () => {
-
-    }
-
     toggleFormType = event => {
         event.preventDefault()
         let newType
