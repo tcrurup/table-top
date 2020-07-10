@@ -25,11 +25,11 @@ class UsersController < ApplicationController
         self.user = User.find_by(username: user_params[:username])
         password = user_params[:password]
 
-        self.user ? authenticatePassword(password) : onLoginFailure('not found')
+        self.user ? authenticatePassword(password) : onLoginFailure('user not found')
     end
 
     def authenticatePassword(password)
-        self.user.authenticate(password) ? onLoginSuccess() : onLoginFailure('wrong password')
+        self.user.authenticate(password) ? onLoginSuccess() : onLoginFailure('incorrect password')
     end
 
     def onLoginSuccess
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
 
     def onLoginFailure(message = "")
-        puts message
+        render json: { errors: message, user: {} }
     end
 
     def user_params
