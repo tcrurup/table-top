@@ -8,7 +8,8 @@ class LoginInput extends Component{
             username: '',
             password: '',
             email: '',
-            type: 'LOGIN'
+            type: 'LOGIN',
+            status: ''
         }
     }
 
@@ -46,6 +47,14 @@ class LoginInput extends Component{
         console.log(`submitting login attempt with > username: ${formData.username} | password: ${formData.password}`)
         this.props.submit({ user: formData })
         this.clearFields()
+    }
+
+    disableForm = () => {
+        document.getElementById('form-login')
+    }
+
+    enableForm = () => {
+
     }
 
     toggleFormType = event => {

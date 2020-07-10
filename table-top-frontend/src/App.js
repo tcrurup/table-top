@@ -1,12 +1,24 @@
 import React from 'react';
 import './App.css';
-import HomePage from './containers/HomePage.js'
+import LoginPage from './containers/LoginPage.js'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      < HomePage />
-    </div>
+    <BrowserRouter>
+    < LoginPage />
+      <div className="App">
+        <Switch>
+
+          <Route path='/login'>  
+            < LoginPage />
+          </Route>
+          <Route path='/homepage'>
+
+          </Route>        
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

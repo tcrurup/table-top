@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../actions/userActions.js'
-import LoginInput from '../components/homePage/LoginInput.js'
+import LoginInput from '../components/LoginPage/LoginInput.js'
 
-class HomePage extends Component{
+class LoginPage extends Component{
 
     constructor(props){
         super(props)
@@ -25,8 +25,8 @@ class HomePage extends Component{
 
 const mapDispatchToProps = dispatch => {
     return{
-        attemptLogin: userCredentials => dispatch(attemptLogin(userCredentials))
+        attemptLogin: userCredentials => dispatch(attemptLogin(userCredentials)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(HomePage)
+export default connect(null, mapDispatchToProps)(LoginPage)
