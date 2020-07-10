@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
     def login
-
         type = user_params[:type]        
         
         
@@ -10,24 +9,31 @@ class UsersController < ApplicationController
         elsif type == 'SIGNUP'
             User.create( user_params.except(:type) )            
         end
-        render json: {message:'sucess', status: 200}
+    end
+
+    def user=(user_object) 
+        @user = user_object
+    end 
+    
+    def user 
+        @user
     end
 
     private
 
     def attemptLogin(user_params)        
-        user = User.find_by(username: user_params[:username])
+        self.user = User.find_by(username: user_params[:username])
         password = user_params[:password]
 
-        user ? authenticatePassword(user, password) : onLoginFailure('not found')
+        self.user ? authenticatePassword(password) : onLoginFailure('not found')
     end
 
-    def authenticatePassword(user, password)
-        user.authenticate(password) ? onLoginSuccess() : onLoginFailure('wrong password')
+    def authenticatePassword(password)
+        self.user.authenticate(password) ? onLoginSuccess() : onLoginFailure('wrong password')
     end
 
     def onLoginSuccess
-        puts 'login success'
+        render json: UserSerializer.new(self.user).to_serialized_json
     end
 
     def onLoginFailure(message = "")
