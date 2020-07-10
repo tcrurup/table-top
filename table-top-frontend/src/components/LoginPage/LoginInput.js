@@ -9,7 +9,6 @@ class LoginInput extends Component{
             password: '',
             email: '',
             type: 'LOGIN',
-            status: ''
         }
     }
 
@@ -61,6 +60,7 @@ class LoginInput extends Component{
         return (
             <div id='login-form'>
                 <h3>Welcome To Table Top!</h3>
+                <h5>{this.props.errors}</h5>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor='username'>Username: </label>
                     <input type='text' id='username' onChange={this.handleChange} value={this.state.username}/>

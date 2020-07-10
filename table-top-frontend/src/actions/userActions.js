@@ -17,6 +17,14 @@ export function attemptLogin(loginData){
         
         fetch(loginUrl(), data)
         .then(response => response.json())
-        .then(object => dispatch({ type:"LOGIN_SUCCESS", credentials: object }))
+        .then(object => {
+            console.log(object)
+            const errors = object.errors
+            if(errors){
+                dispatch({ type:"LOGIN_FAILURE", errors})
+            } else {
+                dispatch({ type:"LOGIN_SUCCESS", credentials: object })
+            }
+        })
     }
 }

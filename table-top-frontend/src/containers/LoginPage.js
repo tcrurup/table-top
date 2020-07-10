@@ -5,21 +5,23 @@ import LoginInput from '../components/LoginPage/LoginInput.js'
 
 class LoginPage extends Component{
 
-    constructor(props){
-        super(props)
-        this.state = {
-            user: "World!",
-        }
-    }
 
 
     render(){
         return(
             <div>
-                {`Hello ${this.state.user}`}
-                < LoginInput submit={this.props.attemptLogin}/>
+                < LoginInput 
+                    submit={this.props.attemptLogin}
+                    errors={this.props.errors}
+                />
             </div>
         )
+    }
+}
+
+const mapStateToProps = state => {
+    return{
+        errors: state.user.errors
     }
 }
 
@@ -29,4 +31,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
