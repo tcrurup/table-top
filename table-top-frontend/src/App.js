@@ -8,11 +8,11 @@ function App() {
   
   return (
     <BrowserRouter>
-      <RoutingManager />
       <div className="App">
+        <RoutingManager />
         <Switch>
           <Route path='/homepage'>
-
+            < LoginPage />
           </Route>
           <Route path='/login' component={LoginPage} />         
         </Switch>

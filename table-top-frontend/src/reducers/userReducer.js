@@ -5,7 +5,10 @@ export default function userReducer( state = {
     username: '', 
     id: null, 
     errors: null, 
-    requesting: false
+    requesting: false,
+    view: {
+        route: '/login'
+    }
 
 }, action){
 
@@ -23,7 +26,7 @@ export default function userReducer( state = {
                ...state,
                username: userData.username,
                id: userData.id, 
-               requesting: false
+               requesting: false,
            }
 
         case "LOGIN_FAILURE":
@@ -32,6 +35,12 @@ export default function userReducer( state = {
                errors: action.errors, 
                requesting: false
            }
+
+        case "APP_REDIRECT":
+            return{
+                ...state,
+                view: { route: action.route }
+            }
             
         default:
             return state

@@ -24,6 +24,7 @@ export function attemptLogin(loginData){
                 dispatch({ type:"LOGIN_FAILURE", errors})
             } else {
                 dispatch({ type:"LOGIN_SUCCESS", credentials: object })
+                dispatch({ type: "APP_REDIRECT", route: '/homepage' })
             }
         })
     }

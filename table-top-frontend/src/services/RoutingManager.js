@@ -1,21 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 class RoutingManager extends Component{
-
-    constructor(props){
-        super(props)
-        this.state={
-            route: '/login'
-        }
-    }
-
     render(){
-        if(this.state.route){
-            return <Redirect to= {this.state.route} />
-        }
+        console.log(`rendering route ${this.props.route}`)
+        if(this.props.route){ return <Redirect to= {this.props.route} /> }
     }
-   
 }
 
-export default RoutingManager
+const mapStateToProps = state => { return {route: state.user.view.route} }
+
+export default connect(mapStateToProps)(RoutingManager)
