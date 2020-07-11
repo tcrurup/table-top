@@ -5,8 +5,6 @@ import LoginInput from '../components/LoginPage/LoginInput.js'
 
 class LoginPage extends Component{
 
-
-
     render(){
         return(
             <div>

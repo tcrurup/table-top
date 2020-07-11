@@ -1,21 +1,20 @@
 import React from 'react';
 import './App.css';
 import LoginPage from './containers/LoginPage.js'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import RoutingManager from './services/RoutingManager.js'
 
 function App() {
+  
   return (
     <BrowserRouter>
-    < LoginPage />
+      <RoutingManager />
       <div className="App">
         <Switch>
-
-          <Route path='/login'>  
-            < LoginPage />
-          </Route>
           <Route path='/homepage'>
 
-          </Route>        
+          </Route>
+          <Route path='/login' component={LoginPage} />         
         </Switch>
       </div>
     </BrowserRouter>

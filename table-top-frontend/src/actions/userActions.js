@@ -1,4 +1,4 @@
-import { loginUrl } from '../backendRouting.js'
+import { loginUrl } from '../services/backendRouting.js'
 
 
 export function attemptLogin(loginData){
