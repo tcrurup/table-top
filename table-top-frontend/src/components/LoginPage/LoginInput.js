@@ -12,70 +12,76 @@ class LoginInput extends Component{
         }
     }
 
-    clearFields = () => this.setState({ username: '', password: '', email: ''})
-
-    createEmailField = () => {
-        if(this.state.type === 'SIGNUP'){
-            return (
-                <>
-                    <label htmlFor='email'>Email: </label>
-                    <input type='email' id='email' onChange={this.handleChange} value={this.state.email}/>
-                </>
-            )
-        }
-    }
-
-    createSubtext = () => {
-        if(this.state.type === 'SIGNUP'){
-            return <h5>Already a member? <a href='' onClick={this.toggleFormType}>Log in</a> </h5>
-        } else {
-            return <h5>Not a member? <a href='' onClick={this.toggleFormType}>Sign up</a> </h5>
-        }    
-    }
-
-    handleChange = event => {
-        event.preventDefault()
-        this.setState({
-            [event.target.id]: event.target.value
-        })
-    }
-
-    handleSubmit = event => {
-        event.preventDefault()
-        const formData = {...this.state}
-        console.log(`submitting login attempt with > username: ${formData.username} | password: ${formData.password}`)
-        this.props.submit({ user: formData })
-        this.clearFields()
-    }
-
-    toggleFormType = event => {
-        event.preventDefault()
-        let newType
-        this.state.type === 'LOGIN' ? newType = 'SIGNUP' : newType = 'LOGIN'
-        console.log(`setting form type to ${newType}`)
-        this.setState({ type: newType })
-    }
-
     render(){
         return (
             <div id='login-form'>
                 <h3>Welcome To Table Top!</h3>
                 <h5>{this.props.errors}</h5>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor='username'>Username: </label>
-                    <input type='text' id='username' onChange={this.handleChange} value={this.state.username}/>
-                    <p/>
-                    <label htmlFor='password'>Password: </label>
-                    <input type='password' id='password' onChange={this.handleChange} value={this.state.password}/>
-                    <p/>
-                    <p> {this.createEmailField()} </p>
+                    {this.inputWithLabel('text', 'username', 'Username: ', this.state.username)}
+                    {this.inputWithLabel('password', 'password', 'Password: ', this.state.password)}
+                    {this.emailField()} 
                     <input type='submit' value={this.state.type} />
                 </form>
 
-                {this.createSubtext()}
+                <h5>{this.subtext()}</h5>
             </div>
         )
     }
+
+    clearFields = () => this.setState({ username: '', password: '', email: ''})
+
+    inputWithLabel(type, id, label, value){  
+        return(
+            <>
+                <label htmlFor={id}>{label}</label>
+                <input type={type} id={id} value={value} onChange={this.handleChange}/>
+            </>
+        )
+    }
+
+    emailField = () => {
+        if(this.state.type === 'SIGNUP'){
+            return this.inputWithLabel('email', 'email', 'Email: ', this.state.email, this.handleChange)    
+        }
+    }
+
+    subtext = () => {
+        let text, buttonText
+        if(this.state.type === 'SIGNUP'){
+            text = 'Already signed up?  '
+            buttonText = 'Log in'
+        } else {
+            text = 'Not signed up yet?  '
+            buttonText = 'Sign Up'
+        }
+        return(
+            <>
+                {text} 
+                <button 
+                    type='button' 
+                    className='link' 
+                    onClick={this.toggleFormType} 
+                > {buttonText} </button> 
+            </>
+        )  
+    }
+
+    handleChange = event => {
+        event.preventDefault()
+        this.setState({ [event.target.id]: event.target.value })
+    }
+
+    handleSubmit = event => {
+        event.preventDefault()
+        this.props.submit({ user: {...this.state} })
+        this.clearFields()
+    }
+
+    toggleFormType = event => {
+        event.preventDefault()
+        this.state.type === 'LOGIN' ? this.setState({ type: "SIGNUP" }) : this.setState({ type: "LOGIN" })
+    }    
 }
 
 export default LoginInput
