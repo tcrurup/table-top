@@ -6,6 +6,7 @@ export default function userReducer( state = {
     id: null, 
     errors: null, 
     requesting: false,
+    games: [],
     view: {
         route: '/login'
     }
@@ -27,6 +28,7 @@ export default function userReducer( state = {
                username: userData.username,
                id: userData.id, 
                requesting: false,
+               games: userData.games
            }
 
         case "LOGIN_FAILURE":
