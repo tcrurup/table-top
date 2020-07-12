@@ -23,6 +23,7 @@ export function attemptLogin(loginData){
             if(errors){
                 dispatch({ type:"LOGIN_FAILURE", errors})
             } else {
+                console.log(object)
                 dispatch({ type:"LOGIN_SUCCESS", credentials: object })
                 dispatch({ type: "APP_REDIRECT", route: '/homepage' })
             }

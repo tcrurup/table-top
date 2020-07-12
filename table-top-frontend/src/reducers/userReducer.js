@@ -28,7 +28,7 @@ export default function userReducer( state = {
                username: userData.username,
                id: userData.id, 
                requesting: false,
-               games: userData.games
+               games: userData.game_rooms
            }
 
         case "LOGIN_FAILURE":
