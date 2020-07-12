@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './forms.css'
+import './LoginPage.css'
 
 class LoginInput extends Component{
 
@@ -19,10 +19,10 @@ class LoginInput extends Component{
                 <h3>Welcome To Table Top!</h3>
                 <h5>{this.props.errors}</h5>
                 <form onSubmit={this.handleSubmit}>
-                    {this.inputWithLabel('text', 'username', 'Username: ', this.state.username)}
-                    {this.inputWithLabel('password', 'password', 'Password: ', this.state.password)}
+                    {this.inputWithLabel('text', 'username', 'Username:', this.state.username)}
+                    {this.inputWithLabel('password', 'password', 'Password:', this.state.password)}
                     {this.emailField()} 
-                    <input type='submit' value={this.state.type} />
+                    <input type='submit' id='button' value={this.state.type} />
                 </form>
                 <h5>{this.subtext()}</h5>
             </div>
@@ -33,10 +33,16 @@ class LoginInput extends Component{
 
     inputWithLabel(type, id, label, value){  
         return(
-            <>
+            <div className='form-input'>
                 <label htmlFor={id}>{label}</label>
-                <input type={type} id={id} value={value} onChange={this.handleChange}/>
-            </>
+                <span className='whitespace' />
+                <input 
+                    type={type} 
+                    id={id} 
+                    value={value} 
+                    onChange={this.handleChange}
+                />
+            </div>
         )
     }
 
