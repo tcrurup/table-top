@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './forms.css'
 
 class LoginInput extends Component{
 
@@ -23,7 +24,6 @@ class LoginInput extends Component{
                     {this.emailField()} 
                     <input type='submit' value={this.state.type} />
                 </form>
-
                 <h5>{this.subtext()}</h5>
             </div>
         )
