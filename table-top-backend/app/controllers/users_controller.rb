@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    
     def login
         type = user_params[:type]        
         

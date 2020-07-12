@@ -7,7 +7,10 @@ class UserSerializer
     def to_serialized_json
         options = {
             include: {
-                :game_rooms => {:only => [:name, :id]}
+                :game_rooms => {:only => [
+                    :name, 
+                    :id
+                ]}
             }
         }   
         @user.to_json(options)
