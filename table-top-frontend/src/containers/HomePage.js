@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GameRoomSelector from '../components/GameRoomSelector/GameRoomSelector.js'
+import GameRoomList from '../components/GameRoomList/GameRoomList.js'
 import { connect } from 'react-redux'
 
 class HomePage extends Component{
@@ -8,7 +8,7 @@ class HomePage extends Component{
         return(
             <>
                 <h1>Hello {this.props.user.username} welcome to Table Top</h1>
-                <GameRoomSelector gameRooms='testing'/>
+                <GameRoomList gameRooms={this.props.user.games}/>
             </>
         )
     }
