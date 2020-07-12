@@ -19,6 +19,9 @@ export default function gameReducer ( state = {}, action){
             .then(object => console.log(object))
             
             return state
+
+      
+            
         
         default:
             return state
