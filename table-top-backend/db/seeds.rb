@@ -5,7 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+gameRoomNames = [
+    "Penumbra",
+    "DnD Classic",
+    "Spice Pirates"
+]
 
 
 user = User.create({
@@ -13,4 +17,8 @@ user = User.create({
     password: 'tactics',
     email: 'tcrurup@gmail.com'
 })
+
+gameRoomNames.each do |room|
+    user.createGameRoom(room)
+end
 

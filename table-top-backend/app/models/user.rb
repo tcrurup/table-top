@@ -9,7 +9,6 @@ class User < ApplicationRecord
     def createGameRoom(name)
         newRoom = GameRoom.new({name: name})
         self.game_rooms << newRoom
-        self.save
     end
 
 
