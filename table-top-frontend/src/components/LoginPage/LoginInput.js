@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
-import FormCreator, { createField } from '../services/FormCreator.js'
+import FormCreator, { createFormField } from '../services/FormCreator.js'
 
 class LoginInput extends Component{
 
@@ -29,15 +29,15 @@ class LoginInput extends Component{
     createForm(){  
         let formSchema = {
             fields: {
-                ...createField('username'),
-                ...createField('password')
+                ...createFormField('username', { value: this.state.username }),
+                ...createFormField('password', { value: this.state.password })
             },
             onSubmit: this.handleSubmit,
             onChange: this.handleChange                       
         }
 
         if(this.state.type === 'SIGNUP'){ 
-            formSchema.fields = {...formSchema.fields, ...createField('password')}
+            formSchema.fields = {...formSchema.fields, ...createFormField('email', {value: this.state.email})}
         }
 
         return <FormCreator formSchema={formSchema} />
@@ -68,7 +68,7 @@ class LoginInput extends Component{
 
     handleChange = event => {
         event.preventDefault()
-        console.log(`EVENT: handleChange : ${event.target.value}`)
+        console.log(`EVENT: handleChange : ${event.target.id}`)
         this.setState({ [event.target.id]: event.target.value })
     }
 

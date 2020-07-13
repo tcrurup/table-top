@@ -14,7 +14,8 @@ export function attemptLogin(loginData){
         }
         
         dispatch({ type:"ATTEMPT_LOGIN"})
-        
+        console.log(data)
+
         fetch(loginUrl(), data)
         .then(response => response.json())
         .then(object => {

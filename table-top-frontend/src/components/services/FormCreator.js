@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function FormCreator(props){
+const FormCreator = props => {
 
-    function inputWithLabel(type, id, label, value){  
+    function inputWithLabel(type, id, label, value) {  
         return(
             <div className='form-input'>
                 <label htmlFor={id}>{label}</label>
@@ -17,9 +17,10 @@ export default function FormCreator(props){
         )
     }
     
+   
     return (
         <form onSubmit={props.formSchema.onSubmit}>
-            
+            {console.log(props.formSchema.fields)}
             {Object.keys(props.formSchema.fields).map( field => {
                 return inputWithLabel(
                     props.formSchema.fields[field].type,
@@ -34,16 +35,8 @@ export default function FormCreator(props){
     )
 }
 
-export function createField(fieldLabel, opt = {}){
-    
-    let field = {[fieldLabel]: { type: fieldLabel, id: fieldLabel} }
-    
-    const options = Object.keys(opt)
-    if(options.length > 0){
-        options.forEach( option => {
-            field[fieldLabel] = {...field[fieldLabel], ...option}
-        })
-    }
-
-    return field
+export function createFormField(fieldLabel, options= {}){
+    return {[fieldLabel]: { type: 'text', id: fieldLabel, ...options }}
 }
+
+export default FormCreator
