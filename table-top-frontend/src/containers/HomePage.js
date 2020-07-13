@@ -4,15 +4,6 @@ import { loadGame, createGame } from '../actions/gameActions.js'
 import { connect } from 'react-redux'
 
 class HomePage extends Component{
-
-    createOrLoadGame = gameDetails => {
-
-        if(gameDetails.has_game === true){
-            this.props.loadGame(gameDetails)
-        } else {
-            this.props.createGame(gameDetails)
-        }
-    }
     
     render(){
         return(
@@ -20,7 +11,8 @@ class HomePage extends Component{
                 <h1>Hello {this.props.user.username} welcome to Table Top</h1>
                 <GameRoomList 
                     gameRooms={this.props.user.games} 
-                    onRoomClick={ this.createOrLoadGame }
+                    createGame={this.props.createGame}
+                    loadGame={this.props.loadGame}
                 />
             </>
         )
