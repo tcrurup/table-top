@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
-import FormCreator from '../services/FormCreator.js'
+import FormCreator, { createField } from '../services/FormCreator.js'
 
 class LoginInput extends Component{
 
@@ -26,50 +26,24 @@ class LoginInput extends Component{
         )
     }
 
-    createForm(){
+    createForm(){  
         let formSchema = {
-            onSubmit: this.handleSubmit,
             fields: {
-                Username: { type:'text', id:'username', value: this.state.username},
-                Password: { type: 'password', id:'password', value: this.state.password},
+                ...createField('username'),
+                ...createField('password')
             },
-            onChange: this.handleChange
+            onSubmit: this.handleSubmit,
+            onChange: this.handleChange                       
         }
-        if(this.state.type === 'SIGNUP'){
-            formSchema = {
-                ...formSchema,
-                fields: {
-                    ...formSchema.fields,
-                    Email: { type:'email', id:'email', value: this.state.email}
-                }   
-            }
+
+        if(this.state.type === 'SIGNUP'){ 
+            formSchema.fields = {...formSchema.fields, ...createField('password')}
         }
-        console.log(formSchema)
+
         return <FormCreator formSchema={formSchema} />
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
-
-    inputWithLabel(type, id, label, value){  
-        return(
-            <div className='form-input'>
-                <label htmlFor={id}>{label}</label>
-                <span className='whitespace' />
-                <input 
-                    type={type} 
-                    id={id} 
-                    value={value} 
-                    onChange={this.handleChange}
-                />
-            </div>
-        )
-    }
-
-    emailField = () => {
-        if(this.state.type === 'SIGNUP'){
-            return this.inputWithLabel('email', 'email', 'Email: ', this.state.email, this.handleChange)    
-        }
-    }
 
     subtext = () => {
         let text, buttonText
@@ -94,7 +68,7 @@ class LoginInput extends Component{
 
     handleChange = event => {
         event.preventDefault()
-        console.log(`EVENT: handleChange : ${event.target}`)
+        console.log(`EVENT: handleChange : ${event.target.value}`)
         this.setState({ [event.target.id]: event.target.value })
     }
 
