@@ -20,12 +20,6 @@ class LoginInput extends Component{
             <div id='login-form'>
                 <h3>Welcome To Table Top!</h3>
                 <h5>{this.props.errors}</h5>
-                {/*<form onSubmit={this.handleSubmit}>
-                    {this.inputWithLabel('text', 'username', 'Username:', this.state.username)}
-                    {this.inputWithLabel('password', 'password', 'Password:', this.state.password)}
-                    {this.emailField()} 
-                    <input type='submit' id='button' value={this.state.type} />
-                </form>*/}
                 {this.createForm()}
                 <h5>{this.subtext()}</h5>
             </div>
@@ -33,16 +27,24 @@ class LoginInput extends Component{
     }
 
     createForm(){
-        const formSchema = {
+        let formSchema = {
             onSubmit: this.handleSubmit,
             fields: {
                 Username: { type:'text', id:'username', value: this.state.username},
                 Password: { type: 'password', id:'password', value: this.state.password},
-                Email: { type:'email', id:'email', value: this.state.email}
             },
             onChange: this.handleChange
         }
-
+        if(this.state.type === 'SIGNUP'){
+            formSchema = {
+                ...formSchema,
+                fields: {
+                    ...formSchema.fields,
+                    Email: { type:'email', id:'email', value: this.state.email}
+                }   
+            }
+        }
+        console.log(formSchema)
         return <FormCreator formSchema={formSchema} />
     }
 
@@ -104,6 +106,7 @@ class LoginInput extends Component{
 
     toggleFormType = event => {
         event.preventDefault()
+        console.log(`Toggling form type from ${this.state.type}`)
         this.state.type === 'LOGIN' ? this.setState({ type: "SIGNUP" }) : this.setState({ type: "LOGIN" })
     }    
 }
