@@ -7,17 +7,10 @@ class HomePage extends Component{
 
     createOrLoadGame = gameDetails => {
 
-        let payload = {
-            game: {
-                ...gameDetails,
-                userId: this.props.user.id
-            },            
-        }
-
         if(gameDetails.has_game === true){
-            this.props.loadGame(payload)
+            this.props.loadGame(gameDetails)
         } else {
-            this.props.createGame(payload)
+            this.props.createGame(gameDetails)
         }
     }
     
