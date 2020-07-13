@@ -10,7 +10,8 @@ class UserSerializer
                 :game_rooms => {:only => [
                     :name, 
                     :id,
-                    :has_game
+                    :has_game,
+                    :user_id
                 ]}
             }
         }   
