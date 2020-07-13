@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
     MAX_GAMEROOMS = 3
     
+    def has_room?(game_room_object)
+        self.game_rooms.include?(game_room_object)
+    end
+    
     def initialize_game_rooms
         while self.game_rooms.length < MAX_GAMEROOMS
             self.game_rooms << GameRoom.create(name: "")

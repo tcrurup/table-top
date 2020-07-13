@@ -5,8 +5,12 @@ class GamesController < ApplicationController
         render json: {message: 'load success'}
     end
 
-    def create
-        puts game_params
+    def newGameRoom
+        user = User.find_by(id: game_params[:user_id])
+        game_room = GameRoom.find_by(id: game_params[:id])
+        if user.has_room?(game_room)
+            game_room.init_room
+        end
         render json: {message: "create success"}
     end
 
