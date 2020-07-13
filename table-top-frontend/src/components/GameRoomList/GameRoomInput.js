@@ -13,7 +13,12 @@ class GameRoomInput extends Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <form>
+                    
+                </form>
+
+            </div>
         )
     }
 }

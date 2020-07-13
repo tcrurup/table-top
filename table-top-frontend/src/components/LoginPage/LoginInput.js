@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
+import FormCreator from '../services/FormCreator.js'
 
 class LoginInput extends Component{
 
@@ -13,20 +14,36 @@ class LoginInput extends Component{
         }
     }
 
+
     render(){
         return (
             <div id='login-form'>
                 <h3>Welcome To Table Top!</h3>
                 <h5>{this.props.errors}</h5>
-                <form onSubmit={this.handleSubmit}>
+                {/*<form onSubmit={this.handleSubmit}>
                     {this.inputWithLabel('text', 'username', 'Username:', this.state.username)}
                     {this.inputWithLabel('password', 'password', 'Password:', this.state.password)}
                     {this.emailField()} 
                     <input type='submit' id='button' value={this.state.type} />
-                </form>
+                </form>*/}
+                {this.createForm()}
                 <h5>{this.subtext()}</h5>
             </div>
         )
+    }
+
+    createForm(){
+        const formSchema = {
+            onSubmit: this.handleSubmit,
+            fields: {
+                Username: { type:'text', id:'username', value: this.state.username},
+                Password: { type: 'password', id:'password', value: this.state.password},
+                Email: { type:'email', id:'email', value: this.state.email}
+            },
+            onChange: this.handleChange
+        }
+
+        return <FormCreator formSchema={formSchema} />
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
@@ -75,6 +92,7 @@ class LoginInput extends Component{
 
     handleChange = event => {
         event.preventDefault()
+        console.log(`EVENT: handleChange : ${event.target}`)
         this.setState({ [event.target.id]: event.target.value })
     }
 
