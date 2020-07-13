@@ -10,14 +10,13 @@ const GameRoomList = props => (
             if(room.has_game){
                 return <GameRoom 
                     room={room} 
-                    onRoomClick={() => {props.loadGame(room)}}
+                    onClick={() => {props.loadGame(room)}}
                 />
                 
 
             } else {
-                return <GameRoomSlot 
-                        name={room.name} 
-                        onRoomClick={() => {props.createGame(room)}} 
+                return <GameRoomSlot  
+                        onClick={() => {props.createGame(room)}} 
                     /> 
             }
         })}

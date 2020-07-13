@@ -3,9 +3,9 @@ import React from 'react'
 const GameRoomSlot = props => (
     <div 
         className='game-rooms-container-item' 
-        onClick={props.onRoomClick}
+        onClick={props.onClick}
     >
-        {props.name}
+        -Create Game-
     </div>
 )
 
