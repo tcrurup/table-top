@@ -6,10 +6,18 @@ import { connect } from 'react-redux'
 class HomePage extends Component{
 
     createOrLoadGame = gameDetails => {
+
+        let payload = {
+            game: {
+                ...gameDetails,
+                userId: this.props.user.id
+            },            
+        }
+
         if(gameDetails.has_game === true){
-            this.props.loadGame(gameDetails)
+            this.props.loadGame(payload)
         } else {
-            this.props.createGame(gameDetails)
+            this.props.createGame(payload)
         }
     }
     
@@ -35,7 +43,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadGame: gameRequest => dispatch(loadGame(gameRequest)),
+        loadGame: payload => dispatch(loadGame(payload)),
         createGame: payload => dispatch(createGame(payload))
     }
 }

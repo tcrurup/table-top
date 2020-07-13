@@ -6,7 +6,10 @@ const GameRoomList = props => (
     <div className='game-rooms-container'>
         <h2>Games You're Running</h2>
         {props.gameRooms.map( room => {
-            return <GameRoom name={room.name} onRoomClick={() => {props.onRoomClick(room)}} /> 
+            return <GameRoom 
+                name={room.name} 
+                onRoomClick={() => {props.onRoomClick(room)}} 
+            /> 
         })}
     </div>
 
