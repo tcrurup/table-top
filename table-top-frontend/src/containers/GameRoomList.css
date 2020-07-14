@@ -29,8 +29,6 @@ div.game-rooms-container-card-empty.flipped{
     height: 700px;
     margin: 10px;
     transition: 1s;
-    transition-property: width, height;
-    transition-delay: 0.6s, 0.6s;
 }
 
 div.game-rooms-container-card{
@@ -87,6 +85,8 @@ div.game-rooms-container-item-card{
 
 .flipped > .flip-card{
     transform: rotateY(180deg);
+    transition-property: transform;
+    transition-delay: 0.4s;
 }
 
 

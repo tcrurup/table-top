@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './FormCreator.css'
 const FormCreator = props => {
 
     function inputWithLabel(type, id, label, value) {  

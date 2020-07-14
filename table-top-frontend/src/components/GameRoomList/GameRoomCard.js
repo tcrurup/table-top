@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GameRoomInput from './GameRoomInput.js'
+import GameRoom from './GameRoom.js'
 
 class GameRoomCard extends Component{
     
@@ -22,6 +23,15 @@ class GameRoomCard extends Component{
             return <span>Click Here To Create A New Game</span>
         }
     }
+
+    cardBack = () => {
+        const game = this.props.game
+        if(game.has_game){
+            return <GameRoom game={game} />
+        } else {
+            return <GameRoomInput />
+        }
+    }
     
     render(){
         const game = this.props.game
@@ -35,7 +45,8 @@ class GameRoomCard extends Component{
                         {this.cardFront()}
                     </div>
                     <div className="flip-card-back">
-                        <GameRoomInput/>
+                        
+                        {this.cardBack()}
                     </div>
                 </div>
             </div>
