@@ -66,7 +66,7 @@ export default function userReducer( state = {
                 games: newGames
             }
 
-        case "CREATE_GAME": return{ ...state, games: action.payload, requesting: false }
+        case "UPDATE_GAMES": return{ ...state, games: action.payload, requesting: false }
         case "START_USER_REQUEST": return {...state, requesting: true}
 
         default:

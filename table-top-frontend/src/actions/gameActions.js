@@ -19,6 +19,28 @@ export function loadGame(gameData){
     }
 }
 
+export function deleteGame(gameData){
+    const serialize = body => {
+        return({
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+    }
+    
+    return (dispatch) => {
+
+        dispatch({type: "START_USER_REQUEST"})
+        fetch('http://localhost:3001/games/delete', serialize(gameData))
+        .then(response => response.json())
+        .then(object => dispatch({type: "UPDATE_GAMES", payload: object}))
+        
+    } 
+}
+
 export function createGame(gameData){
 
     const serialize = body => {
@@ -37,7 +59,7 @@ export function createGame(gameData){
         dispatch({type: "START_USER_REQUEST"})
         fetch('http://localhost:3001/games/create', serialize(gameData))
         .then(response => response.json())
-        .then(object => dispatch({type: "CREATE_GAME", payload: object}))
+        .then(object => dispatch({type: "UPDATE_GAMES", payload: object}))
         
     }
 }

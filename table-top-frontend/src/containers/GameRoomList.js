@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadGame, createGame, focusCard } from '../actions/gameActions.js'
+import { loadGame, createGame, deleteGame, focusCard } from '../actions/gameActions.js'
 import GameRoomCard from '../components/GameRoomList/GameRoomCard.js'
 import './GameRoomList.css'
 
@@ -26,7 +26,8 @@ class GameRoomList extends Component{
                 user={this.props.user} 
                 focusCard={this.props.focusCard}
                 loadGame={this.props.loadGame}
-                createGame={this.props.createGame}    
+                createGame={this.props.createGame}
+                deleteGame={this.props.deleteGame}    
             />
         )
     }   
@@ -42,6 +43,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadGame: payload => dispatch(loadGame(payload)),
         createGame: payload => dispatch(createGame(payload)),
+        deleteGame: payload => dispatch(deleteGame(payload)),
         focusCard: payload => dispatch(focusCard(payload))
     }
 }

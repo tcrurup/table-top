@@ -23,9 +23,24 @@ class GameRoomCard extends Component{
     render = () => this.html(this.props.game)
 
     focusCard = () => this.props.focusCard(this.props.game.id)
-    cardBack = game => game.has_game ? <GameRoom game={game} loadGame={this.props.loadGame}/> : <GameRoomInput userId={this.props.user.id} gameId={this.props.game.id} onSubmit={this.props.createGame}/>
     cardFront = () => (this.props.game.has_game ?  this.gameDetails() : <span>-CREATE NEW-</span>)
     gameDetails = () => <span>{this.props.game.name}</span>
+
+    cardBack = game => {
+        if(game.has_game){
+            return <GameRoom 
+                game={game} 
+                loadGame={this.props.loadGame}
+                deleteGame={this.props.deleteGame}    
+            /> 
+        } else {
+            return <GameRoomInput 
+                userId={this.props.user.id} 
+                gameId={this.props.game.id} 
+                onSubmit={this.props.createGame}
+            />
+        }
+    }
     html = game => 
         <div 
             className={`game-rooms-container-card-empty ${game.focus ? 'flipped' : ''}`} 
