@@ -37,7 +37,7 @@ export function createGame(gameData){
         dispatch({type: "START_USER_REQUEST"})
         fetch('http://localhost:3001/games/create', serialize(gameData))
         .then(response => response.json())
-        .then(object => dispatch({type: "FINISH_USER_REQUEST"}))
+        .then(object => dispatch({type: "CREATE_GAME", payload: object}))
         
     }
 }

@@ -13,7 +13,7 @@ class GamesController < ApplicationController
         if user.has_room?(game_room)
             game_room.init_room(game_params[:name])
         end
-        render json: {message: "create success"}
+        render json: user.game_rooms
     end
 
     private
