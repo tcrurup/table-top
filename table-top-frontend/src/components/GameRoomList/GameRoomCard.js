@@ -13,6 +13,20 @@ class GameRoomCard extends Component{
     flipCard = () => {
         this.setState({ flipped: !this.state.flipped})
         console.log(!this.state.flipped)
+        console.log(this.props)
+    }
+
+    cardFront = () => {
+        const game = this.props.game
+        if(game.has_game){
+            return (
+                <>
+                <span>{game.name}</span>
+                </>
+            )
+        } else {
+        
+        }
     }
     
     render(){
@@ -23,7 +37,7 @@ class GameRoomCard extends Component{
             >
                 <div className={ this.state.flipped ? 'flip-card flipped' : 'flip-card'}> 
                     <div className="flip-card-front">
-                        -Create Game-
+                        {this.cardFront()}
                     </div>
                     <div className="flip-card-back">
 

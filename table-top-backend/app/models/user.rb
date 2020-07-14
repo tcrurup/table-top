@@ -14,15 +14,16 @@ class User < ApplicationRecord
     def has_room?(game_room_object)
         self.game_rooms.include?(game_room_object)
     end
+
+    def create_game_in_slot(name, slot_number)
+        index = (slot_number - 1); #Subtract one from input to get position in array
+        self.game_rooms[index].init_room(name)
+    end
     
     def initialize_game_rooms
         while self.game_rooms.length < MAX_GAMEROOMS
             self.game_rooms << GameRoom.create(name: "")
         end
     end
-
-
-
-
 
 end

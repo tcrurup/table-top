@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 gameRoomNames = [
+    "Penumbra"
 ]
 
 
@@ -15,4 +16,7 @@ user = User.create({
     email: 'tcrurup@gmail.com'
 })
 
+gameRoomNames.each_with_index do |name, index|
+    user.create_game_in_slot(name, index + 1)
+end
 
