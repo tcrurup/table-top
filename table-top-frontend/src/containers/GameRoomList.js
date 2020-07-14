@@ -20,7 +20,9 @@ class GameRoomList extends Component{
             <div className='game-rooms-container'>
                 {console.log(this.props)}
                 <h2>Games You're Running</h2>
-                {this.gameCard()}
+                <div className = 'save-slots-container'>
+                    {this.gameCard()}
+                </div>
             </div>
         )
     }

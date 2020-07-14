@@ -28,10 +28,10 @@ class GameRoomCard extends Component{
         const game = this.props.game
         return(        
             <div 
-                className='game-rooms-container-card-empty' 
+                className={`game-rooms-container-card-empty ${game.focus ? 'flipped' : ''}`} 
                 onClick={() => this.focusCard(game.id)}
             >
-                <div className={ game.focus ? 'flip-card flipped' : 'flip-card'}> 
+                <div className='flip-card'> 
                     <div className="flip-card-front">
                         {this.cardFront()}
                     </div>
