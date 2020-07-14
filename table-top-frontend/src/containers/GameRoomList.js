@@ -6,28 +6,24 @@ import './GameRoomList.css'
 
 class GameRoomList extends Component{
     
-    gameCard(){
-        return this.props.gameRooms.map( game =>{
-            return <GameRoomCard 
-                game={game} 
-                focusCard={this.props.focusCard} 
-            />
-        })
-    }
-    
-    render(){
-        return(
-            <div className='game-rooms-container'>
-                {console.log(this.props)}
-                <h2>Games You're Running</h2>
-                <div className = 'save-slots-container'>
-                    {this.gameCard()}
-                </div>
+    html = () => 
+        <div className='game-rooms-container'>
+            <h2>Your Games</h2>
+            <div className = 'save-slots-container'>
+                {this._createGameCard()}
             </div>
+        </div> 
+    
+    
+    render(){return this.html()}
+    
+    //********PRIVATE METHODS********\\
+    
+    _createGameCard(){
+        return this.props.gameRooms.map( game =>
+            <GameRoomCard game={game} focusCard={this.props.focusCard}/>
         )
-    }
-
-
+    }   
 }
 
 const mapDispatchToProps = dispatch => {
