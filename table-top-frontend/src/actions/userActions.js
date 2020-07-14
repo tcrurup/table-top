@@ -2,6 +2,7 @@ import { loginUrl } from '../services/backendRouting.js'
 
 
 export function attemptLogin(loginData){
+    console.log('ACTION: ATTEMPT_LOGIN')
     return (dispatch) => {
         
         const data = {
