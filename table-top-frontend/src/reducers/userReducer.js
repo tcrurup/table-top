@@ -65,7 +65,10 @@ export default function userReducer( state = {
                 ...state,
                 games: newGames
             }
-            
+
+        case "START_USER_REQUEST": return {...state, requesting: true}
+        case "FINISH_USER_REQUEST": return {...state, requesting: false} 
+
         default:
             return state
     }
