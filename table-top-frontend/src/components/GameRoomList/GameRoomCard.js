@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
 
-class GameRoomSlot extends Component{
+class GameRoomCard extends Component{
     
     constructor(props){
         super(props)
@@ -12,6 +12,7 @@ class GameRoomSlot extends Component{
     
     flipCard = () => {
         this.setState({ flipped: !this.state.flipped})
+        console.log(!this.state.flipped)
     }
     
     render(){
@@ -33,4 +34,4 @@ class GameRoomSlot extends Component{
     }
 
 }
-export default GameRoomSlot
+export default GameRoomCard
