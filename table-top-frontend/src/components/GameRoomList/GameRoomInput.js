@@ -1,6 +1,5 @@
-const { Component } = require("react");
-
-import { Component } from 'react'
+import React, { Component } from 'react'
+import FormCreator, { createFormField } from '../services/FormCreator.js'
 
 class GameRoomInput extends Component{
     
@@ -12,13 +11,17 @@ class GameRoomInput extends Component{
     }
 
     render(){
+        
+        const formSchema = {
+            fields: {
+                ...createFormField('name', { value: this.state.name} )
+            }
+        }
+        
         return(
-            <div>
-                <form>
-                    
-                </form>
-
-            </div>
+            <FormCreator formSchema={formSchema} />
         )
     }
 }
+
+export default GameRoomInput
