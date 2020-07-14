@@ -51,8 +51,6 @@ export default function userReducer( state = {
         case "FOCUS_CARD":
             
             let newGames = state.games.map( game => {
-                console.log(action)
-                console.log(game.id === action.payload)
                 if(game.id === action.payload){
                     game.focus = true;
                 } else {

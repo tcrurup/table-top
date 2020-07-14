@@ -11,7 +11,12 @@ class GameRoom < ApplicationRecord
         self.has_game = true
         self.save
     end
-    
+
+    def delete_game
+        self.name=""
+        self.has_game = false
+        self.save
+    end    
 
     private
 

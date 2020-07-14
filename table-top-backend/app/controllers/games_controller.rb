@@ -5,6 +5,15 @@ class GamesController < ApplicationController
         render json: {message: 'load success'}
     end
 
+    def delete
+        user = User.find(game_params[:user_id].to_i)
+        puts '*******************'
+        puts user
+        game_room = GameRoom.find(game_params[:id].to_i)
+        game_room.delete_game if user.has_room?(game_room)
+        render json: user.game_rooms
+    end
+
     def newGameRoom
         puts params
         user = User.find_by(id: game_params[:userId])
@@ -19,6 +28,7 @@ class GamesController < ApplicationController
     private
 
     def game_params
-        params.require(:game).permit(:id, :name, :has_game, :userId)
+        params.require(:game).permit(:id, :name, :has_game, :userId, :user_id)
+        #need to consolidate the user_id's
     end
 end

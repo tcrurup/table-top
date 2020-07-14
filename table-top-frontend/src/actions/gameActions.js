@@ -20,6 +20,7 @@ export function loadGame(gameData){
 }
 
 export function deleteGame(gameData){
+    console.log("ACTION: DELETE_GAME")
     const serialize = body => {
         return({
             method: 'POST',
@@ -32,11 +33,14 @@ export function deleteGame(gameData){
     }
     
     return (dispatch) => {
-
+        console.log(gameData)
         dispatch({type: "START_USER_REQUEST"})
         fetch('http://localhost:3001/games/delete', serialize(gameData))
         .then(response => response.json())
-        .then(object => dispatch({type: "UPDATE_GAMES", payload: object}))
+        .then(object =>{ 
+            console.log(object)
+            return dispatch({type: "UPDATE_GAMES", payload: object}
+        )})
         
     } 
 }
