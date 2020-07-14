@@ -6,6 +6,7 @@ class GameRoom < ApplicationRecord
     before_create :init
 
     def init_room(name)
+        puts name
         self.name = name
         self.has_game = true
         self.save

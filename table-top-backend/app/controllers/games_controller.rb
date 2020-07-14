@@ -6,10 +6,12 @@ class GamesController < ApplicationController
     end
 
     def newGameRoom
-        user = User.find_by(id: game_params[:user_id])
+        puts params
+        user = User.find_by(id: game_params[:userId])
         game_room = GameRoom.find_by(id: game_params[:id])
+        puts game_room.has_game?
         if user.has_room?(game_room)
-            game_room.init_room
+            game_room.init_room(game_params[:name])
         end
         render json: {message: "create success"}
     end
@@ -17,6 +19,6 @@ class GamesController < ApplicationController
     private
 
     def game_params
-        params.require(:game).permit(:id, :name, :has_game, :user_id)
+        params.require(:game).permit(:id, :name, :has_game, :userId)
     end
 end

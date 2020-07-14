@@ -22,13 +22,20 @@ class GameRoomList extends Component{
     _createGameCard(){
         return this.props.gameRooms.map( game =>
             <GameRoomCard 
-                game={game} 
+                game={game}
+                user={this.props.user} 
                 focusCard={this.props.focusCard}
                 loadGame={this.props.loadGame}
                 createGame={this.props.createGame}    
             />
         )
     }   
+}
+
+const mapStateToProps = state => {
+    return{
+        user: state.user
+    }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -39,4 +46,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(GameRoomList)
+export default connect(mapStateToProps, mapDispatchToProps)(GameRoomList)
