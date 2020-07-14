@@ -21,7 +21,12 @@ class GameRoomList extends Component{
     
     _createGameCard(){
         return this.props.gameRooms.map( game =>
-            <GameRoomCard game={game} focusCard={this.props.focusCard}/>
+            <GameRoomCard 
+                game={game} 
+                focusCard={this.props.focusCard}
+                loadGame={this.props.loadGame}
+                createGame={this.props.createGame}    
+            />
         )
     }   
 }
