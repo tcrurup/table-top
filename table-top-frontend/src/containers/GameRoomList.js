@@ -5,15 +5,22 @@ import GameRoomCard from '../components/GameRoomList/GameRoomCard.js'
 import './GameRoomList.css'
 
 class GameRoomList extends Component{
-
-
+    
+    gameCard(){
+        return this.props.gameRooms.map( game =>{
+            return <GameRoomCard 
+                game={game} 
+                focusCard={this.props.focusCard} 
+            />
+        })
+    }
     
     render(){
         return(
             <div className='game-rooms-container'>
                 {console.log(this.props)}
                 <h2>Games You're Running</h2>
-                {this.props.gameRooms.map( game => <GameRoomCard game={game} focus={this.props.focusCard}/> )}
+                {this.gameCard()}
             </div>
         )
     }

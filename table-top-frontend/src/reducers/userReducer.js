@@ -22,13 +22,17 @@ export default function userReducer( state = {
             }
 
         case "LOGIN_SUCCESS":
-           const userData = action.credentials
+            const userData = action.credentials
+            let slot = 0; 
             return {
-               ...state,
-               username: userData.username,
-               id: userData.id, 
-               requesting: false,
-               games: userData.game_rooms
+                ...state,
+                username: userData.username,
+                id: userData.id, 
+                requesting: false,
+                games: userData.game_rooms.map( room => {
+                    slot++
+                    return Object.assign({}, room, {focus: false} )
+               })
            }
 
         case "LOGIN_FAILURE":
@@ -42,6 +46,24 @@ export default function userReducer( state = {
             return{
                 ...state,
                 view: { route: action.route }
+            }
+
+        case "FOCUS_CARD":
+            
+            let newGames = state.games.map( game => {
+                console.log(action)
+                console.log(game.id === action.payload)
+                if(game.id === action.payload){
+                    game.focus = true;
+                } else {
+                    game.focus = false;
+                }
+                return game
+            })
+            console.log(action)
+            return{
+                ...state,
+                games: newGames
             }
             
         default:

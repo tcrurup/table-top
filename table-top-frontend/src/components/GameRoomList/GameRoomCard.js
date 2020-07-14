@@ -9,9 +9,8 @@ class GameRoomCard extends Component{
         }
     }
 
-    
-    flipCard = () => {
-        this.setState({ flipped: !this.state.flipped})
+    focusCard = () => {
+        this.props.focusCard(this.props.game.id)
     }
 
     cardFront = () => {
@@ -26,12 +25,13 @@ class GameRoomCard extends Component{
     }
     
     render(){
+        const game = this.props.game
         return(        
             <div 
                 className='game-rooms-container-card-empty' 
-                onClick={this.flipCard}
+                onClick={() => this.focusCard(game.id)}
             >
-                <div className={ this.state.flipped ? 'flip-card flipped' : 'flip-card'}> 
+                <div className={ game.focus ? 'flip-card flipped' : 'flip-card'}> 
                     <div className="flip-card-front">
                         {this.cardFront()}
                     </div>
