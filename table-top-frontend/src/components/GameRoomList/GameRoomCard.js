@@ -12,19 +12,11 @@ focusCard - function that will enlarge the card with passed game id and minimize
 \********PROPS********/
 
 class GameRoomCard extends Component{
-    
-    constructor(props){
-        super(props)
-        this.state = {
-            flipped: false
-        }
-    }
 
     render = () => this.html(this.props.game)
-
     focusCard = () => this.props.focusCard(this.props.game.id)
     cardFront = () => (this.props.game.has_game ?  this.gameDetails() : <span>-CREATE NEW-</span>)
-    gameDetails = () => <span>{this.props.game.name}</span>
+    gameDetails = () => <span>{this.props.game.name}</span>  
 
     cardBack = game => {
         if(game.has_game){
@@ -38,6 +30,7 @@ class GameRoomCard extends Component{
                 userId={this.props.user.id} 
                 gameId={this.props.game.id} 
                 onSubmit={this.props.createGame}
+                flipToFront={this.props.flipToFront}
             />
         }
     }

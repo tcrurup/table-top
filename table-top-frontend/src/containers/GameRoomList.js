@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadGame, createGame, deleteGame, focusCard } from '../actions/gameActions.js'
+import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
 import GameRoomCard from '../components/GameRoomList/GameRoomCard.js'
 import './GameRoomList.css'
 
@@ -27,7 +27,8 @@ class GameRoomList extends Component{
                 focusCard={this.props.focusCard}
                 loadGame={this.props.loadGame}
                 createGame={this.props.createGame}
-                deleteGame={this.props.deleteGame}    
+                deleteGame={this.props.deleteGame}
+                flipToFront={this.props.flipCardToFront}    
             />
         )
     }   
@@ -44,7 +45,8 @@ const mapDispatchToProps = dispatch => {
         loadGame: payload => dispatch(loadGame(payload)),
         createGame: payload => dispatch(createGame(payload)),
         deleteGame: payload => dispatch(deleteGame(payload)),
-        focusCard: payload => dispatch(focusCard(payload))
+        focusCard: payload => dispatch(focusCard(payload)),
+        flipCardToFront: payload => dispatch(flipCardToFront(payload))
     }
 }
 

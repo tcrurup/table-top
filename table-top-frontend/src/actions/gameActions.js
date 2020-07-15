@@ -72,3 +72,7 @@ export function focusCard(data){
     console.log('ACTION: FOCUS_CARD')
     return { type:'FOCUS_CARD', payload: data}
 }
+
+export function flipCardToFront(gameId){
+    return { type:'FLIP_TO_FRONT', payload: gameId}
+}

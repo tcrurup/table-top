@@ -75,6 +75,16 @@ export default function userReducer( state = {
             }
         case "START_USER_REQUEST": return {...state, requesting: true}
 
+        case "FLIP_TO_FRONT":
+            return{
+                ...state,
+                games: state.games.map( game => {
+                    if(game.id === action.payload){
+                        return {...game, focus: false}
+                    } else { return game }
+                })
+            }
+
         default:
             return state
     }

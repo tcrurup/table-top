@@ -23,7 +23,10 @@ class GameRoomInput extends Component{
             }
         }
 
-        return <FormCreator formSchema={formSchema} />
+        return <>
+            <button class='minimize' onClick={() => this.props.flipToFront(this.props.gameId)}>-</button>
+            <FormCreator formSchema={formSchema} />
+        </>
     }
 
     handleChange = event => {
