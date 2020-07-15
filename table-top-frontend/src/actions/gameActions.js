@@ -1,19 +1,12 @@
+import { serializePostData, serializeUserGames } from '../services/serializers.js'
+
 export function loadGame(gameData){
 
-    const serialize = body => {
-        return({
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
-    }    
+    const data = serializePostData(serializeUserGames(gameData))
 
     return (dispatch) => {
         dispatch({type: "START_USER_REQUEST"})
-        fetch('http://localhost:3001/games/load', serialize(gameData))
+        fetch('http://localhost:3001/games/load', data)
         .then(response => response.json())
         .then(object => dispatch({type: "FINISH_USER_REQUEST"}))        
     }
