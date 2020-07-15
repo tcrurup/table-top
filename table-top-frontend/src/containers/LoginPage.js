@@ -5,16 +5,12 @@ import LoginInput from '../components/LoginPage/LoginInput.js'
 
 class LoginPage extends Component{
 
-    render(){
-        return(
-            <div>
-                < LoginInput 
-                    submit={this.props.attemptLogin}
-                    errors={this.props.errors}
-                />
-            </div>
-        )
-    }
+    render= () => <div>
+        <LoginInput 
+            submit={this.props.attemptLogin}
+            errors={this.props.errors}
+        />
+    </div>      
 }
 
 const mapStateToProps = state => {

@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
-import './LoginPage.css'
-import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
+import FormCreator from '../FormCreator/FormCreator.js'
 import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
+import './LoginPage.css'
+
+/********PROPS********\
+
+    errors - hash containing any errors that were received from the server
+    submit - calls the dispatch action to submit details to backend
+
+\********PROPS********/
 
 class LoginInput extends Component{
 
@@ -14,69 +21,38 @@ class LoginInput extends Component{
             type: 'LOGIN',
         }
     }
-    
-    
 
-    render(){
-        return (
-            <div id='login-form'>
-                <h3>Welcome To Table Top!</h3>
-                <h5>{this.props.errors}</h5>
-                {this.createForm()}
-                <h5>{this.subtext()}</h5>
-            </div>
-        )
-    }
+    render = () => <div id='login-form'>
+        <h3>Welcome To Table Top!</h3>
+        <h5>{this.props.errors}</h5>
+        {this.createForm()}
+        <h5>{this.subtext()}</h5>
+    </div>
 
     createForm(){  
-        let formSchema = {
-            fields: {
-                ...createFormField('username', { value: this.state.username }),
-                ...createFormField('password', { value: this.state.password })
-            },
-            onSubmit: this.handleSubmit,
-            onChange: this.handleChange                       
-        }
-
         let schema = new CreateFormSchema(this.handleSubmit, this.handleChange)
         .addFieldToSchema('text', 'username', this.state.username, 'Username:  ')
         .addFieldToSchema('password', 'password', this.state.password, 'Password:  ')
-        .finalize()
-
         if(this.state.type === 'SIGNUP'){ 
-            formSchema.fields = {...formSchema.fields, ...createFormField('email', {value: this.state.email})}
+            schema.addFieldToSchema('email', 'email', this.state.email, "Email:  ")
         }
-
-        console.log(schema)
         return <FormCreator formSchema={schema} />
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
 
-    subtext = () => {
-        let text, buttonText
-        if(this.state.type === 'SIGNUP'){
-            text = 'Already signed up?  '
-            buttonText = 'Log in'
-        } else {
-            text = 'Not signed up yet?  '
-            buttonText = 'Sign Up'
-        }
-        return(
-            <>
-                {text} 
-                <button 
-                    type='button' 
-                    className='link' 
-                    onClick={this.toggleFormType} 
-                > {buttonText} </button> 
-            </>
-        )  
-    }
-
+    subtext = () => <>
+        {this.state.type === 'SIGNUP' ? 'Already signed up?  ' : 'Not signed up yet?  '} 
+        <button 
+            type='button' 
+            className='link' 
+            onClick={this.toggleFormType} 
+        > {this.state.type === 'SIGNUP ? ' ? 'Log in' : 'Sign Up'} 
+        </button> 
+    </>
+    
     handleChange = event => {
         event.preventDefault()
-        console.log(`EVENT: handleChange : ${event.target.id}`)
         this.setState({ [event.target.id]: event.target.value })
     }
 
@@ -88,7 +64,6 @@ class LoginInput extends Component{
 
     toggleFormType = event => {
         event.preventDefault()
-        console.log(`Toggling form type from ${this.state.type}`)
         this.state.type === 'LOGIN' ? this.setState({ type: "SIGNUP" }) : this.setState({ type: "LOGIN" })
     }    
 }
