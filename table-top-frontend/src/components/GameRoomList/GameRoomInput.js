@@ -3,7 +3,11 @@ import FormCreator from '../FormCreator/FormCreator.js'
 import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
 import './GameRoomList.css'
 /********PROPS********\
-onSubmit - function that create database on backend 
+onSubmit - function that create database on backend
+gameId - the games id given from the server
+userId - the user id given from the server
+flipToFront(gameId) - function that flips the game card with the corresponding id to
+    the front
 \********PROPS********/
 
 class GameRoomInput extends Component{
@@ -15,18 +19,17 @@ class GameRoomInput extends Component{
         }
     }
 
-    render(){
-        
-        const formSchema = new CreateFormSchema(this.handleSubmit, this.handleChange)
+    render = () => <>
+        <button class='minimize' onClick={() => this.props.flipToFront(this.props.gameId)}>-</button>
+        <FormCreator formSchema={this.formSchema()} />
+    </>
+    
+    
+
+    formSchema(){
+        return new CreateFormSchema(this.handleSubmit, this.handleChange)
         .addFieldToSchema('text', 'name', this.state.name, 'Game Name: ')
         .finalize()
-
-        console.log(formSchema)
-
-        return <>
-            <button class='minimize' onClick={() => this.props.flipToFront(this.props.gameId)}>-</button>
-            <FormCreator formSchema={formSchema} />
-        </>
     }
 
     handleChange = event => {
@@ -35,7 +38,6 @@ class GameRoomInput extends Component{
     }
 
     handleSubmit = event =>{
-        console.log(this.props)
         event.preventDefault()
         const data = {
             game: {
@@ -44,7 +46,6 @@ class GameRoomInput extends Component{
                 id: this.props.gameId
             }
         }
-        console.log(data)
         this.props.onSubmit(data)
     }
 }
