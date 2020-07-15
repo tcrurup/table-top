@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormCreator, { createFormField } from '../services/FormCreator.js'
+import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
 /********PROPS********\
 onSubmit - function that create database on backend 
 \********PROPS********/

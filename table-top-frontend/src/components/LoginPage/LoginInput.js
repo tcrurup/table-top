@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
-import FormCreator, { createFormField } from '../services/FormCreator.js'
+import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
 
 class LoginInput extends Component{
 
