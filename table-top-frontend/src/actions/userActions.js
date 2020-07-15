@@ -1,9 +1,18 @@
 import { loginUrl } from '../services/backendRouting.js'
+import FetchRequest from '../services/FetchRequest.js'
 
 
 export function attemptLogin(loginData){
-    console.log('ACTION: ATTEMPT_LOGIN')
+    
     return (dispatch) => {
+        
+        const success = data => {
+            dispatch({ type: "LOGIN_SUCCESS", credentials: data })
+            dispatch({ type: "APP_REDIRECT", route: '/homepage' })
+        }
+        const failure = data => {
+            dispatch({ type:"LOGIN_FAILURE", errors: data.errors})
+        }
         
         const data = {
             method: 'POST',
@@ -15,9 +24,13 @@ export function attemptLogin(loginData){
         }
         
         dispatch({ type:"ATTEMPT_LOGIN"})
-        console.log(data)
-
-        fetch(loginUrl(), data)
+        new FetchRequest(loginUrl(), data)
+        .onSuccess(success)
+        .onFailure(failure)
+        .send()
+        
+        
+        /*fetch(loginUrl(), data)
         .then(response => response.json())
         .then(object => {
             console.log(object)
@@ -29,7 +42,7 @@ export function attemptLogin(loginData){
                 dispatch({ type:"LOGIN_SUCCESS", credentials: object })
                 dispatch({ type: "APP_REDIRECT", route: '/homepage' })
             }
-        })
+        })*/
     }
 }
 

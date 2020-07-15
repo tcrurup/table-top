@@ -20,9 +20,16 @@ class FetchRequest{
 
     send = () =>{
         fetch(this.url, this.data)
-        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            if(!response.ok){ throw new Error(response) }
+            return response.json() 
+        })
         .then( object => {
-            object.status === 200 ? this.success(object) : this.failure(object)
+            this.success(object)  
+        }) 
+        .catch(error => {
+            this.failure(error)
         })
     }
 

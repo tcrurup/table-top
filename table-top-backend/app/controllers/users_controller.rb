@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     end
 
     def onLoginSuccess
-        render json: UserSerializer.new(self.user).to_serialized_json
+        render json: UserSerializer.new(self.user).to_serialized_json, status: 200
     end
 
     def onLoginFailure(message = "")
