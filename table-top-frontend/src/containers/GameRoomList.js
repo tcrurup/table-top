@@ -20,7 +20,6 @@ class GameRoomList extends Component{
     //********PRIVATE METHODS********\\
     
     _createGameCard(){
-        console.log(this.props)
         return this.props.gameRooms.map( game =>
             <GameRoomCard 
                 game={game}
