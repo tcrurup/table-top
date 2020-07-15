@@ -1,14 +1,17 @@
 import { serializePostData, serializeUserGames } from '../services/serializers.js'
+import { fetchLoadGame } from '../services/fetchers.js'
 
 export function loadGame(gameData){
 
-    const data = serializePostData(serializeUserGames(gameData))
+    const data = serializeUserGames(gameData)
 
     return (dispatch) => {
         dispatch({type: "START_USER_REQUEST"})
-        fetch('http://localhost:3001/games/load', data)
-        .then(response => response.json())
-        .then(object => dispatch({type: "FINISH_USER_REQUEST"}))        
+        fetchLoadGame(data, console.log)
+        
+        //fetch('http://localhost:3001/games/load', data)
+        //.then(response => response.json())
+        //.then(object => dispatch({type: "FINISH_USER_REQUEST"}))        
     }
 }
 

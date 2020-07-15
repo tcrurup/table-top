@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
     def load
         puts params
-        render json: {message: 'load success'}
+        render json: {message: 'load success', status: 200}
     end
 
     def delete
