@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
+import FormCreator, { CreateFormSchema } from '../FormCreator/FormCreator.js'
 import './GameRoomList.css'
 /********PROPS********\
 onSubmit - function that create database on backend 
@@ -16,13 +16,11 @@ class GameRoomInput extends Component{
 
     render(){
         
-        const formSchema = {
-            onSubmit: this.handleSubmit,
-            onChange: this.handleChange,
-            fields: {
-                ...createFormField('name', { value: this.state.name} )
-            }
-        }
+        const formSchema = new CreateFormSchema(this.handleSubmit, this.handleChange)
+        .addFieldToSchema('text', 'name', this.state.name, 'Game Name: ')
+        .finalize()
+
+        console.log(formSchema)
 
         return <>
             <button class='minimize' onClick={() => this.props.flipToFront(this.props.gameId)}>-</button>
