@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
 import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
+import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
 
 class LoginInput extends Component{
 
@@ -13,7 +14,8 @@ class LoginInput extends Component{
             type: 'LOGIN',
         }
     }
-
+    
+    
 
     render(){
         return (
@@ -36,11 +38,17 @@ class LoginInput extends Component{
             onChange: this.handleChange                       
         }
 
+        let schema = new CreateFormSchema(this.handleSubmit, this.handleChange)
+        .addFieldToSchema('text', 'username', this.state.username, 'Username:  ')
+        .addFieldToSchema('password', 'password', this.state.password, 'Password:  ')
+        .finalize()
+
         if(this.state.type === 'SIGNUP'){ 
             formSchema.fields = {...formSchema.fields, ...createFormField('email', {value: this.state.email})}
         }
 
-        return <FormCreator formSchema={formSchema} />
+        console.log(schema)
+        return <FormCreator formSchema={schema} />
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})

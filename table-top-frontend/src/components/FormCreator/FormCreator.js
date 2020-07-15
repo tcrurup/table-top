@@ -21,13 +21,19 @@ const FormCreator = props => {
    
     return (
         <form onSubmit={props.formSchema.onSubmit}>
-            {Object.keys(props.formSchema.fields).map( field => {
-                return inputWithLabel(
-                    props.formSchema.fields[field].type,
-                    props.formSchema.fields[field].id,
-                    field,
-                    props.formSchema.fields[field].value
-                )
+            {console.log({...props.formSchema})}
+            {props.formSchema.fields.map( field => {
+                console.log(props.formSchema)
+                let input = Object.keys(field).map( key => {
+                    return inputWithLabel(
+                        field[key].type,
+                        field[key].id,
+                        key,
+                        field[key].value
+                    )
+                })
+                console.log(input)
+                return input
             })}
 
             <input type='submit' id='button' value="SUBMIT" />
