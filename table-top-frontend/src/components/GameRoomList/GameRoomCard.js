@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GameRoomInput from './GameRoomInput.js'
 import GameRoom from './GameRoom.js'
+import './GameRoomList.css'
 /********PROPS********\
 
 game - Hash with game data from redux store

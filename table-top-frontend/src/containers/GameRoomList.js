@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
 import GameRoomCard from '../components/GameRoomList/GameRoomCard.js'
-import './GameRoomList.css'
+
 
 class GameRoomList extends Component{
     

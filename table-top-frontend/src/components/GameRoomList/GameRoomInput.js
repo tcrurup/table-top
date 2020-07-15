@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormCreator, { createFormField } from '../FormCreator/FormCreator.js'
+import './GameRoomList.css'
 /********PROPS********\
 onSubmit - function that create database on backend 
 \********PROPS********/
