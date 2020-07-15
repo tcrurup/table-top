@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormCreator from '../FormCreator/FormCreator.js'
 import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
 import './GameRoomList.css'
+
 /********PROPS********\
 onSubmit - function that create database on backend
 gameId - the games id given from the server
@@ -24,8 +25,6 @@ class GameRoomInput extends Component{
         <FormCreator formSchema={this.formSchema()} />
     </>
     
-    
-
     formSchema(){
         return new CreateFormSchema(this.handleSubmit, this.handleChange)
         .addFieldToSchema('text', 'name', this.state.name, 'Game Name: ')
