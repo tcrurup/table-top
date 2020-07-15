@@ -44,7 +44,9 @@ class GameRoomCard extends Component{
     html = game => 
         <div 
             className={`game-rooms-container-card-empty ${game.focus ? 'flipped' : ''}`} 
-            onClick={() => this.focusCard(game.id)}
+            onClick={() => {
+                if(game.focus == false){this.focusCard(game.id)}
+            }}
         >
 
             <div className='flip-card'> 
