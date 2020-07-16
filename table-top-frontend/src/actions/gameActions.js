@@ -6,7 +6,7 @@ export function loadGame(gameData){
         new FetchRequest('http://localhost:3001/games/load', gameData)
         .onSuccess(() => {console.log('success')})
         .onFailure(() => {console.log('failure')})
-        .send()   
+        .startFetch()   
     }
 }
 
@@ -16,7 +16,7 @@ export function deleteGame(gameData){
         new FetchRequest('http://localhost:3001/games/delete', gameData)
         .onSuccess(object => dispatch({type: "UPDATE_GAMES", payload: object}))
         .onFailure(() => {console.log('failure')})
-        .send()
+        .startFetch()
     }    
 }
 
@@ -25,7 +25,7 @@ export function createGame(gameData){
         new FetchRequest('http://localhost:3001/games/create', gameData)
         .onSuccess(object => dispatch({type: "UPDATE_GAMES", payload: object}))
         .onFailure(() => {console.log('failure')})
-        .send()
+        .startFetch()
     }
 }
 

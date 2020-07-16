@@ -29,7 +29,7 @@ class FetchRequest{
         return this
     }
 
-    send = () =>{
+    startFetch = () =>{
         fetch(this.url, this.serialize(this.data))
         .then(response => {
             console.log(response)

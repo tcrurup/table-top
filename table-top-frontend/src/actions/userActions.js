@@ -20,7 +20,7 @@ export function attemptLogin(loginData){
         new FetchRequest(loginUrl(), loginData)
         .onSuccess(success)
         .onFailure(failure)
-        .send()
+        .startFetch()
     }
 }
 
