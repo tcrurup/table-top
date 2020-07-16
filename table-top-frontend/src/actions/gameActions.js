@@ -24,7 +24,10 @@ export function loadGame(gameData){
     return (dispatch) => {
         dispatch({type: "START_USER_REQUEST"})
         new FetchRequest('http://localhost:3001/games/load', serializeGame(gameData))
-        .onSuccess(() => {console.log('success')})
+        .onSuccess( object => {
+            dispatch({type: "LOAD_GAME", payload: object})
+            dispatch({type: "APP_REDIRECT", route: '/game'})
+        })
         .onFailure(() => {console.log('failure')})
         .startFetch()   
     }

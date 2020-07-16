@@ -14,10 +14,8 @@ export default function gameReducer ( state = {}, action){
     
     switch(action.type){
 
-        
-          
-            
-        
+        case "LOAD_GAME":
+            return {...action.payload}
         default:
             return state
     }

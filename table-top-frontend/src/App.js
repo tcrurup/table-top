@@ -13,7 +13,8 @@ function App() {
         <RoutingManager />
         <Switch>
           <Route path='/homepage' component={HomePage} /> 
-          <Route path='/login' component={LoginPage} />         
+          <Route path='/login' component={LoginPage} />
+          <Route path='/game' component={''} />        
         </Switch>
       </div>
     </BrowserRouter>
