@@ -8,7 +8,6 @@ import reducer from './reducers/index.js'
 import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk'
 
-const middleWareEnhancer = applyMiddleware(thunk)
 
 
 const store = createStore(reducer, compose(
