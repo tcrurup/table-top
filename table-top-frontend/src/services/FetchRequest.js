@@ -1,5 +1,16 @@
 class FetchRequest{
 
+    serialize(data){
+        return{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }    
+    }
+    
     constructor(url, data){
         this.url = url
         this.data = data
@@ -19,7 +30,7 @@ class FetchRequest{
     }
 
     send = () =>{
-        fetch(this.url, this.data)
+        fetch(this.url, this.serialize(this.data))
         .then(response => {
             console.log(response)
             if(!response.ok){ throw new Error(response) }
