@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import LoginPage from './containers/LoginPage.js'
 import HomePage from './containers/HomePage.js'
+import GamePage from './containers/GamePage.js'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import RoutingManager from './services/RoutingManager.js'
 
@@ -14,7 +15,7 @@ function App() {
         <Switch>
           <Route path='/homepage' component={HomePage} /> 
           <Route path='/login' component={LoginPage} />
-          <Route path='/game' component={''} />        
+          <Route path='/game' component={GamePage} />        
         </Switch>
       </div>
     </BrowserRouter>
