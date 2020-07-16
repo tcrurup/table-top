@@ -14,8 +14,9 @@ export function attemptLogin(loginData){
             dispatch({ type:"LOGIN_FAILURE", errors: data.errors})
         }
         
+        
         dispatch({ type:"ATTEMPT_LOGIN"})
-
+        
         new FetchRequest(loginUrl(), loginData)
         .onSuccess(success)
         .onFailure(failure)
