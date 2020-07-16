@@ -6,7 +6,17 @@ export function serializeUserGames(userGame){
             id: userGame.id,
             name: userGame.name,
             user_id: userGame.user_id,
-            focus: userGame.focus
+        }
+    }
+}
+
+export function serializeGame(game){
+    console.log(game)
+    return {
+        game : {
+            serialized_to: 'Game',
+            id: game.id,
+            user_id: game.user_id
         }
     }
 }

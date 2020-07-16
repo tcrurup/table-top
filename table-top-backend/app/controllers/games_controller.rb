@@ -1,14 +1,13 @@
 class GamesController < ApplicationController
 
     def load
-        puts params
-        render json: {message: 'load success', status: 200}
+        user = User.find(game_params[:user_id].to_i)
+        game_room = GameRoom.find(game_params[:id].to_i)
+        render json: GameSerializer.new(game_room).to_serialized_json
     end
-
+    
     def delete
         user = User.find(game_params[:user_id].to_i)
-        puts '*******************'
-        puts user
         game_room = GameRoom.find(game_params[:id].to_i)
         game_room.delete_game if user.has_room?(game_room)
         render json: user.game_rooms
@@ -28,7 +27,7 @@ class GamesController < ApplicationController
     private
 
     def game_params
-        params.require(:game).permit(:id, :name, :has_game, :userId, :user_id)
+        params.require(:game).permit(:id, :name, :has_game, :userId, :user_id, :serialized_to)
         #need to consolidate the user_id's
     end
 end

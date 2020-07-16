@@ -1,4 +1,5 @@
 import { loginUrl } from '../services/backendRouting.js'
+import { serializeUserGames } from '../services/serializers'
 import FetchRequest from '../services/FetchRequest.js'
 
 
@@ -13,7 +14,6 @@ export function attemptLogin(loginData){
         const failure = data => {
             dispatch({ type:"LOGIN_FAILURE", errors: data.errors})
         }
-        
         
         dispatch({ type:"ATTEMPT_LOGIN"})
         
