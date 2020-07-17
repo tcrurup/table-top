@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/users/login', to: 'users#login'
   
   post '/games/load', to: 'games#load'
-  post '/games/create', to: 'games#newGameRoom'
+  post '/games/create', to: 'games#new_game_room'
   post '/games/delete', to: 'games#delete'
 
 end

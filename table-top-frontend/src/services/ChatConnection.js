@@ -37,18 +37,18 @@ class ChatConnection{
 
         return this.connection.subscriptions.create({
             channel: 'RoomChannel', 
-            room_id: roomId, 
+            game_id: roomId, 
             sender: this.senderId
         },{
             connected: function () {
                 console.log(`connected tp ${roomId}`)
             },
             received: function (data) {
-                console.log(data)
+                scope.callback(data)
             },
             speak: function(message){
                 return this.perform('speak', {
-                    room_id: roomId,
+                    game_id: roomId,
                     message: message,
                     sender_id: scope.senderId
                 })

@@ -8,7 +8,6 @@ class GameSerializer
         options = {
             only: [
                 :id,
-                :user_id,
                 :name
             ]
         }   

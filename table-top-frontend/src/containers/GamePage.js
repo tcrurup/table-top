@@ -8,6 +8,7 @@ class GamePage extends Component{
     renderChatBox = () => {
        
             return < ChatBox 
+                userId = {this.props.userId}
                 game={this.props.game}
             /> 
         
@@ -22,6 +23,7 @@ class GamePage extends Component{
 
 const mapStateToProps = state => {
     return {
+        userId: state.user.id,
         game: state.game
     }
 }
