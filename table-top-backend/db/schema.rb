@@ -10,16 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_160708) do
+ActiveRecord::Schema.define(version: 2020_07_17_161740) do
 
   create_table "chat_rooms", force: :cascade do |t|
+    t.integer "game_id"
   end
 
   create_table "game_rooms", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
     t.boolean "has_game"
-    t.integer "chat_room_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "game_room_id"
   end
 
   create_table "messages", force: :cascade do |t|
