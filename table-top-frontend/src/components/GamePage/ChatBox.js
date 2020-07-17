@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ChatConnection from '../../services/ChatConnection.js'
+import ChatResponse from '../GamePage/ChatResponse.js'
 
 
 class ChatBox extends Component{    
@@ -7,7 +8,8 @@ class ChatBox extends Component{
     constructor(){
         super()
         this.state = {
-            message: ''
+            message: '',
+            responses: []        
         }
     }
 
@@ -15,9 +17,7 @@ class ChatBox extends Component{
         if(this.props.game.id !==""){
             this.connection = new ChatConnection(
                 this.props.userId, 
-                response => {
-                    console.log(response)
-                }
+                this.handleResponse
             )
             .openNewRoom(this.props.game.id)
         }
@@ -34,9 +34,25 @@ class ChatBox extends Component{
             message: event.target.value
         })
     }
+
+    handleResponse = response => {
+        console.log(this.state)
+        this.setState((prevState, props) => { 
+            return {
+                responses:[...prevState.responses, response] 
+            }
+        })
+    }
+
+    renderResponses = () => {
+        return this.state.responses.map(response => <ChatResponse response={response}/>)
+    }
     
     render = () => <div id='chat-box'>
-        <form onSubmit = {this.handleSubmit}>
+         
+         {this.renderResponses()}
+        
+        <form onSubmit = {this.handleSubmit}>    
             <input type='textarea' onChange={this.handleChange}></input>
             <input type='submit' className='submitButton' /> 
         </form>
