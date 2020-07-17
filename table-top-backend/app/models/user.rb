@@ -24,12 +24,12 @@ class User < ApplicationRecord
 
     def create_game_in_slot(name, slot_number)
         index = (slot_number - 1); #Subtract one from input to get position in array
-        self.game_rooms[index].init_room(name)
+        self.game_rooms[index].create_game(name)
     end
     
     def initialize_game_rooms
         while self.game_rooms.length < MAX_GAMEROOMS
-            self.game_rooms << GameRoom.create(name: "")
+            self.game_rooms << GameRoom.create()
         end
     end
 

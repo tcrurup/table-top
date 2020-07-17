@@ -13,7 +13,10 @@ class ChatBox extends Component{
 
     componentDidMount(){
         if(this.props.game.id !==""){
-            this.connection = new ChatConnection(1, () => {}).openNewRoom(this.props.game.id)
+            this.connection = new ChatConnection(
+                this.props.game.id, 
+                () => {})
+            .openNewRoom(this.props.game.id)
         }
     }    
 

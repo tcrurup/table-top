@@ -2,11 +2,11 @@ class GameRoom < ApplicationRecord
 
     #ASSOCIATIONS 
     belongs_to :user
+    has_one :game
     before_create :init
 
-    def init_room(name)
-        puts name 
-        self.name = name
+    def create_game(name)
+        self.game = Game.create(name: name)
         self.has_game = true
         self.save
     end
