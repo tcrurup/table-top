@@ -2,6 +2,7 @@ import React, { Component }from 'react'
 import ChatConnection from '../services/ChatConnection.js'
 import ChatBox from '../components/GamePage/ChatBox.js'
 import { connect } from 'react-redux'
+import './GamePage.css'
 
 class GamePage extends Component{
 
@@ -17,10 +18,10 @@ class GamePage extends Component{
     }
     
     
-    render = () => <div>
+    render = () => <div id='game-page'>
         {this.props.game.name}
         {this.renderChatBox()}
-        </div>
+    </div>
 }
 
 const mapStateToProps = state => {
