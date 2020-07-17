@@ -19,6 +19,7 @@ class RoomChannel < ApplicationCable::Channel
     private
 
     def get_chat_room(room_id)
+      puts room_id
       ChatRoom.find_by(id: room_id)
     end
 end

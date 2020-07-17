@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_152917) do
+ActiveRecord::Schema.define(version: 2020_07_17_160708) do
 
   create_table "chat_rooms", force: :cascade do |t|
   end
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_152917) do
     t.string "name"
     t.integer "user_id"
     t.boolean "has_game"
+    t.integer "chat_room_id"
   end
 
   create_table "messages", force: :cascade do |t|
