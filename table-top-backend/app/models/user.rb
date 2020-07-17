@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
     #ASSOCIATIONS
     has_many :game_rooms
+    has_many :messages
 
     #ACTIVE RECORD CALLBACKS    
     before_create :initialize_game_rooms
@@ -13,6 +14,11 @@ class User < ApplicationRecord
     
     def has_room?(game_room_object)
         self.game_rooms.include?(game_room_object)
+    end
+
+    def create_message
+        Message.create()
+        self.messages 
     end
 
     def create_game_in_slot(name, slot_number)
