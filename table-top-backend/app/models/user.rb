@@ -16,9 +16,10 @@ class User < ApplicationRecord
         self.game_rooms.include?(game_room_object)
     end
 
-    def create_message
-        Message.create()
-        self.messages 
+    def create_message(message)
+        message = Message.create(content: message)
+        self.messages << message
+        message
     end
 
     def create_game_in_slot(name, slot_number)
