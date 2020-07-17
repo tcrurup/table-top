@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_07_17_152917) do
 
-  create_table "chatrooms", force: :cascade do |t|
+  create_table "chat_rooms", force: :cascade do |t|
   end
 
   create_table "game_rooms", force: :cascade do |t|

@@ -12,8 +12,13 @@ class RoomChannel < ApplicationCable::Channel
       room_id   = data['room_id']
       message   = data['message']
 
-      chatRoom = ChatRoom.find_by(id: room_id)
+      chatRoom = get_chat_room(room_id)
       chatRoom.new_message(message, sender)
     end    
 
+    private
+
+    def get_chat_room(room_id)
+      ChatRoom.find_by(id: room_id)
+    end
 end
