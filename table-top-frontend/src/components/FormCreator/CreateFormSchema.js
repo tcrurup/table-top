@@ -8,9 +8,7 @@ export default class CreateFormSchema{
     }
 
     addFieldToSchema(type, id, value, label=null){
-        console.log(type)
         this.fields.push({ [label]: {type, id, value} })
-        console.log(this.fields)
         return this
     }
 

@@ -9,7 +9,8 @@ export default function userReducer( state = {
     games: [],
     view: {
         route: '/login'
-    }
+    },
+    games_a_part_of: []
 
 }, action){
 
@@ -30,7 +31,8 @@ export default function userReducer( state = {
                 games: userData.game_rooms.map( room => {
                     slot++
                     return Object.assign({}, room, {focus: false} )
-               })
+                }),
+                games_a_part_of: [...userData.games_user_part_of]
            }
 
         case "LOGIN_FAILURE":

@@ -21,9 +21,7 @@ const FormCreator = props => {
    
     return (
         <form onSubmit={props.formSchema.onSubmit}>
-            {console.log({...props.formSchema})}
             {props.formSchema.fields.map( field => {
-                console.log(props.formSchema)
                 let input = Object.keys(field).map( key => {
                     return inputWithLabel(
                         field[key].type,
@@ -32,7 +30,6 @@ const FormCreator = props => {
                         field[key].value
                     )
                 })
-                console.log(input)
                 return input
             })}
 
