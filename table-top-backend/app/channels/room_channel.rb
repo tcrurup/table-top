@@ -8,20 +8,27 @@ class RoomChannel < ApplicationCable::Channel
     end
 
     def speak(data)      
-      sender    = data['sender_id']
+      sender_id    = data['sender_id']
       room_id   = data['room_id']
       message   = data['message']
 
       
       
-      chatRoom = self.get_chat_room(room_id)
-      chatRoom.new_message(message, sender)
+      chat_room = get_chat_room(room_id)
+      Message.create(
+        chat_room: chat_room,
+        sender_id: sender_id,
+        content: message
+      )
     end    
 
     private
 
     def get_chat_room(game_id)
       puts('**************************************')
-      puts GameRoom.find_by(id: game_id).game.chat_room
+      puts game_id
+      game = Game.find_by(id: game_id)
+      puts game.chat_room
+      game.chat_room
     end
 end

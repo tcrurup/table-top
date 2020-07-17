@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
     
     belongs_to :chat_room
-    belongs_to :sender, class_name :User, foreign_key: 'sender_id'
+    belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
 
 
     after_create_commit :create_broadcast_job
@@ -15,7 +15,7 @@ class Message < ApplicationRecord
     end
 
     def create_broadcast_job
-        BroadcastMessageJob.perfom_later(self)
+        BroadcastMessageJob.perform_later(self)
     end
         
     
