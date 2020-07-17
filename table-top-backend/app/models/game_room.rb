@@ -5,6 +5,7 @@ class GameRoom < ApplicationRecord
     has_one :game
     before_create :init
 
+
     def create_game(name)
         self.game = Game.create(name: name)
         self.has_game = true

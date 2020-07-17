@@ -16,13 +16,11 @@ export default function userReducer( state = {
     switch(action.type){
 
         case "ATTEMPT_LOGIN":
-            return {
-                ...state,
-                requesting: true
-            }
+            return { ...state, requesting: true }
 
         case "LOGIN_SUCCESS":
             const userData = action.credentials
+            console.log(action.credentials)
             let slot = 0; 
             return {
                 ...state,

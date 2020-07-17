@@ -3,6 +3,8 @@ class User < ApplicationRecord
     #ASSOCIATIONS
     has_many :game_rooms
     has_many :messages
+    has_many :player_games, foreign_key: 'player_id'
+    has_many :games_user_part_of, through: :player_games, source: :game
 
     #ACTIVE RECORD CALLBACKS    
     before_create :initialize_game_rooms
@@ -14,6 +16,13 @@ class User < ApplicationRecord
     
     def has_room?(game_room_object)
         self.game_rooms.include?(game_room_object)
+    end
+
+    def join_game(game)
+        unless self.games_user_part_of.include?(game)
+            self.games_user_part_of << game
+            game.players << self
+        end    
     end
 
     def create_message(message)

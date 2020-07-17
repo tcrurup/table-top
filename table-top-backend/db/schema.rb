@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_165531) do
+ActiveRecord::Schema.define(version: 2020_07_17_215509) do
 
   create_table "chat_rooms", force: :cascade do |t|
     t.integer "game_id"
@@ -25,12 +25,18 @@ ActiveRecord::Schema.define(version: 2020_07_17_165531) do
   create_table "games", force: :cascade do |t|
     t.integer "game_room_id"
     t.string "name"
+    t.integer "player_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.integer "chat_room_id"
     t.integer "sender_id"
     t.text "content"
+  end
+
+  create_table "player_games", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "game_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -13,6 +13,7 @@ class UserSerializer
                     :has_game,
                     :user_id
                 ]}
+                :games_part_of
             }
         }   
         @user.to_json(options)

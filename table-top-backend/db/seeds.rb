@@ -10,13 +10,20 @@ gameRoomNames = [
 ]
 
 
-user = User.create({
+user1 = User.create({
     username: 'tcrurup',
     password: 'tactics',
     email: 'tcrurup@gmail.com'
 })
 
+user2 = User.create({
+    username: 'bing',
+    password: 'bing',
+    email: 'bing@gmail.com'
+})
+
 gameRoomNames.each_with_index do |name, index|
-    user.create_game_in_slot(name, index + 1)
+    user1.create_game_in_slot(name, index + 1)
 end
 
+user2.join_game(user1.game_rooms[0].game)
