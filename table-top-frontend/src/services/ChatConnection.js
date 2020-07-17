@@ -43,8 +43,10 @@ class ChatConnection{
             connected: function () {
                 console.log(`connected tp ${roomId}`)
             },
+            received: function (data) {
+                console.log(data)
+            },
             speak: function(message){
-                console.log(this)
                 return this.perform('speak', {
                     room_id: roomId,
                     message: message,

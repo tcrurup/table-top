@@ -19,7 +19,6 @@ class ChatBox extends Component{
 
     handleSubmit = event => {
         event.preventDefault()
-        console.log(this.connection)
         this.connection.chat(this.state.message, this.props.game.id)
     }
 
