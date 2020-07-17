@@ -1,17 +1,26 @@
 import React, { Component }from 'react'
 import ChatConnection from '../services/ChatConnection.js'
+import ChatBox from '../components/GamePage/ChatBox.js'
 import { connect } from 'react-redux'
 
 class GamePage extends Component{
 
     constructor(){
-        super()
-        new ChatConnection(1, '')   
+        super()  
     }
     
-    render = () => <div>{
-        this.props.game.name 
-    }</div>
+    renderChatBox = () => {
+        if(this.props.game.id !==""){
+            let connection = new ChatConnection(1,3).openNewRoom(this.props.game.id)
+            return < ChatBox connection ={connection} /> 
+        } 
+    }
+    
+    
+    render = () => <div>
+        {this.props.game.name}
+        {this.renderChatBox()}
+        </div>
 }
 
 const mapStateToProps = state => {

@@ -6,11 +6,28 @@ class ChatConnection{
         this.senderId = senderId
         this.callback = callback
 
-        const url = 'http://localhost/3000/cable'
+        const url = 'ws://localhost:3001/cable'
 
         this.connection = ActionCable.createConsumer(url)
-        console.log(this.connection)
         this.roomConnections = []     
+    }
+
+    openNewRoom(roomId){
+        if(roomId !== undefined){
+            this.roomConnections.push({
+                roomId: roomId, 
+                conn: this.createRoomConnection(roomId)
+            })
+        }
+    }
+
+    createRoomConnection(roomId){
+        console.log('connecting to room')
+        this.connection.subscriptions.create({
+            channel: 'RoomChannel', 
+            room_id: roomId, 
+            sender: this.senderId
+        })
     }
 
     talk(message, roomId){
@@ -18,7 +35,7 @@ class ChatConnection{
         if(room){
             return room
         }
-    }
+    }  
 }
 
 export default ChatConnection

@@ -23,15 +23,15 @@ class RoomChannel < ApplicationCable::Channel
           sender: sender,
           content: message
         )
-      end
-      
-      def get_convo(room_code)
-        ChatRoom.find_by(room_code: room_code)
-      end
-      
-      def get_sender
-        puts 'getting sender'
-      end
     end
+      
+    def get_convo(room_code)
+      ChatRoom.find_by(room_code: room_code)
+    end
+      
+    def get_sender
+      puts 'getting sender'
+    end
+    
 
 end
