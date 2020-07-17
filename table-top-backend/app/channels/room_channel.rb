@@ -10,11 +10,14 @@ class RoomChannel < ApplicationCable::Channel
     def speak(data)
 
       
+      
+      
       sender    = data['sender_id']
       room_id   = data['room_id']
       message   = data['message']
 
       chatRoom = ChatRoom.find_by(id: room_id)
+      chatRoom.newMessage(message, sender)
 
       
     end    
