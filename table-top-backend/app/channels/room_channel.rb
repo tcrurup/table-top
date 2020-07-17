@@ -8,30 +8,11 @@ class RoomChannel < ApplicationCable::Channel
     end
 
     def speak(data)
-        sender    = get_sender(data)
+        sender    = data['sender_id']
         room_id   = data['room_id']
         message   = data['message']
     
-        raise 'No room_id!' if room_id.blank?
-        convo = get_convo(room_id) # A conversation is a room
-        raise 'No conversation found!' if convo.blank?
-        raise 'No message!' if message.blank?
-    
-        convo.users << sender unless convo.users.include?(sender)
-        Message.create!(
-          conversation: convo,
-          sender: sender,
-          content: message
-        )
-    end
-      
-    def get_convo(room_code)
-      ChatRoom.find_by(room_code: room_code)
-    end
-      
-    def get_sender
-      puts 'getting sender'
-    end
-    
+        puts data
+    end    
 
 end

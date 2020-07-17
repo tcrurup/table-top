@@ -1,20 +1,16 @@
 import React, { Component }from 'react'
-import ChatConnection from '../services/ChatConnection.js'
 import ChatBox from '../components/GamePage/ChatBox.js'
 import { connect } from 'react-redux'
 import './GamePage.css'
 
 class GamePage extends Component{
 
-    constructor(){
-        super()  
-    }
-    
     renderChatBox = () => {
-        if(this.props.game.id !==""){
-            let connection = new ChatConnection(1,3).openNewRoom(this.props.game.id)
-            return < ChatBox connection ={connection} /> 
-        } 
+       
+            return < ChatBox 
+                game={this.props.game}
+            /> 
+        
     }
     
     
@@ -29,5 +25,6 @@ const mapStateToProps = state => {
         game: state.game
     }
 }
+
 
 export default connect(mapStateToProps)(GamePage)

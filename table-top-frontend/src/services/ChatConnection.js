@@ -9,7 +9,17 @@ class ChatConnection{
         const url = 'ws://localhost:3001/cable'
 
         this.connection = ActionCable.createConsumer(url)
+        console.log(this.connection)
         this.roomConnections = []     
+    }
+
+    chat(message, roomId){
+        let room = this.roomConnections.find(conn => conn.roomId == roomId)
+        if(room){
+            room.conn.speak(message)
+        } else {
+            console.log('error sending message')
+        }
     }
 
     openNewRoom(roomId){
@@ -19,23 +29,31 @@ class ChatConnection{
                 conn: this.createRoomConnection(roomId)
             })
         }
+        return this
     }
 
     createRoomConnection(roomId){
-        console.log('connecting to room')
-        this.connection.subscriptions.create({
+        const scope = this
+
+        return this.connection.subscriptions.create({
             channel: 'RoomChannel', 
             room_id: roomId, 
             sender: this.senderId
+        },{
+            connected: function () {
+                console.log(`connected tp ${roomId}`)
+            },
+            speak: function(message){
+                console.log(this)
+                return this.perform('speak', {
+                    room_id: roomId,
+                    message: message,
+                    sender_id: scope.senderId
+                })
+            }
         })
     }
 
-    talk(message, roomId){
-        const room = this.roomConnections.find(room => room.roomId == roomId)
-        if(room){
-            return room
-        }
-    }  
 }
 
 export default ChatConnection
