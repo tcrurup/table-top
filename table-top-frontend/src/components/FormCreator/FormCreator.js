@@ -6,10 +6,6 @@ const FormCreator = props => {
     function inputWithLabel(type, id, label, value) {  
         return(
             <div className='form-input'>
-                
-                <div className={`overlay-${props.requesting ? 'enabled' : 'disabled'}`}>
-                </div>
-
                 <label htmlFor={id}>{label}</label>
                 <span className='whitespace' />
                 <input 
