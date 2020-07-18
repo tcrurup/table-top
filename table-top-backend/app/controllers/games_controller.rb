@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
     def load
-        user = User.find(game_params[:user_id].to_i)
+        user = User.find_by(id: game_params[:user_id].to_i)
         game_room = GameRoom.find(game_params[:id].to_i)
         render json: GameSerializer.new(game_room.game).to_serialized_json
     end

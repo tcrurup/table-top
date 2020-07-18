@@ -10,7 +10,7 @@ class HomePage extends Component{
             <>
                 <h1>Hello {this.props.user.username} welcome to Table Top</h1>
                 < GameRoomList gameRooms={this.props.user.games} />
-                < GamesUserIsPlayer />
+                < GamesUserIsPlayer gameRooms ={this.props.user.games_a_part_of}/>
             </>
         )
     }
