@@ -31,3 +31,5 @@ user2.create_game_in_slot('Kringle Klaus', 2)
 
 user1.join_game(user2.game_rooms[1].game)
 user2.join_game(user1.game_rooms[0].game)
+
+user1.add_friend(user2)

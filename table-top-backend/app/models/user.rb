@@ -8,7 +8,7 @@ class User < ApplicationRecord
     has_many :games_user_part_of, through: :player_games, source: :game
 
     has_many :user_friends
-    has_many :friends, through: :user_friends, source: :user
+    has_many :friends, through: :user_friends, class_name: 'User'
 
     before_create :initialize_game_rooms
 
@@ -19,6 +19,10 @@ class User < ApplicationRecord
     
     def has_room?(game_room_object)
         self.game_rooms.include?(game_room_object)
+    end
+
+    def add_friend(user)
+        self.friends << user
     end
 
     def join_game(game)
