@@ -6,7 +6,7 @@ import './GamePage.css'
 class GamePage extends Component{
 
     renderChatBox = () => {
-       
+            console.log(this.props)
             return < ChatBox 
                 userId = {this.props.userId}
                 game={this.props.game}
