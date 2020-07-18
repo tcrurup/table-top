@@ -7,7 +7,7 @@ import './GamePage.css'
 class GamePage extends Component{
 
     renderChatBox = () => <> 
-        <NavBar />
+    
         < ChatBox 
             userId = {this.props.userId}
             game={this.props.game}
@@ -17,10 +17,13 @@ class GamePage extends Component{
     
     
     
-    render = () => <div id='game-page'>
-        {this.props.game.name}
-        {this.renderChatBox()}
-    </div>
+    render = () => <>
+        <NavBar options={{}} />
+        <div id='game-page'>
+            {this.props.game.name}
+            {this.renderChatBox()}
+        </div>
+    </>
 }
 
 const mapStateToProps = state => {

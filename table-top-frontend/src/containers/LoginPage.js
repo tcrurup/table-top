@@ -8,7 +8,7 @@ import './LoginPage.css'
 class LoginPage extends Component{
 
     render= () => <div>
-        <NavBar />
+        <NavBar options={{}} />
         <LoginInput 
             submit={this.props.attemptLogin}
             errors={this.props.errors}

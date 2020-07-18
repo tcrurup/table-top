@@ -4,9 +4,9 @@ import Bar from '../components/NavBar/Bar.js'
 import React, { Component } from 'react'
 
 class NavBar extends Component{
-
+    
     render(){
-        return <Bar />
+        return <Bar options={this.props.options} />
     }
 }
 

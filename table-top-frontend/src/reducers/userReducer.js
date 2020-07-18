@@ -42,7 +42,7 @@ export default function userReducer( state = {
                requesting: false
            }
 
-        case "LOGOUT": return{}
+        case "LOGOUT_USER": return{}
 
         case "APP_REDIRECT":
             return{

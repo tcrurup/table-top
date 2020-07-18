@@ -14,7 +14,7 @@ class HomePage extends Component{
     }
     
     render(){
-
+        console.log(this.navBarOptions())
         return<>
             <NavBar 
                 options={this.navBarOptions()}
