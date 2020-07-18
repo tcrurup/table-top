@@ -1,18 +1,6 @@
+import { userDefault } from '../constants/reducerDefaults.js'
 
-
-
-export default function userReducer( state = { 
-    username: '', 
-    id: null, 
-    errors: null, 
-    requesting: false,
-    games: [],
-    view: {
-        route: '/login'
-    },
-    games_a_part_of: []
-
-}, action){
+export default function userReducer( state = userDefault, action){
 
     switch(action.type){
 
@@ -42,7 +30,7 @@ export default function userReducer( state = {
                requesting: false
            }
 
-        case "LOGOUT_USER": return{}
+        case "LOGOUT_USER": return userDefault
 
         case "APP_REDIRECT":
             return{
