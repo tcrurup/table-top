@@ -4,6 +4,7 @@ import NavBar from './NavBar.js'
 import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
 import { logout } from '../actions/userActions.js'
+import '../styling/GameRoomList.css'
 
 class HomePage extends Component{
     
