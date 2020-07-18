@@ -21,7 +21,7 @@ const GameRoomList = props => {
 
     const createGamesWithCharactersList = () => {
         return props.gamesWithCharacters.map( game => {
-            return < ListRow game={game }/>
+            return < ListRow game={game} loadGame={() => props.loadGame(game)}/>
         })
     }
     
