@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import GameRoomList from '../components/GameRoomList/GameRoomList.js'
-import GamesUserIsPlayer from './GamesUserIsPlayer.js'
 import { connect } from 'react-redux'
 
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
@@ -22,6 +21,8 @@ class HomePage extends Component{
                 flipCardToFront = {this.props.flipCardToFront}    
             />
         </>
+
+
         
     }
 
