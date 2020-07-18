@@ -18,9 +18,18 @@ class GameRoomCard extends Component{
     
     
     focusCard = () => this.props.focusCard(this.props.game.id)
-    cardFront = () => (this.props.game.has_game ?  this.gameDetails() : <span>-CREATE NEW-</span>)
-    gameDetails = () => <span>{console.log(this.props), this.props.game.game.name}</span>  
+    
+    gameDetails = () => <span>{this.props.game.game.name}</span>  
 
+    
+    cardFront = game => {
+        if(game.has_game){
+            return this.gameDetails()
+        } else { 
+            return <span>-CREATE NEW-</span>
+        }
+    }
+    
     cardBack = game => {
         if(game.has_game){
             return <GameRoom 
@@ -33,7 +42,6 @@ class GameRoomCard extends Component{
                 userId={this.props.user.id} 
                 gameId={this.props.game.id} 
                 onSubmit={this.props.createGame}
-                flipToFront={this.props.flipToFront}
             />
         }
     }
@@ -45,11 +53,13 @@ class GameRoomCard extends Component{
             }}
         >
 
-            <div className='flip-card'> 
+            <div className='flip-card'>
+ 
                 <div className="flip-card-front">
-                    {this.cardFront()}
+                    {this.cardFront(game)}
                 </div>
                 <div className="flip-card-back">
+                    <button class='minimize' onClick={() => this.props.flipToFront(this.props.game.id)}>-</button>
                     {this.cardBack(game)}
                 </div>
             </div>

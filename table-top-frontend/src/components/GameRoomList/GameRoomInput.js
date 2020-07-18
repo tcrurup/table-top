@@ -21,7 +21,6 @@ class GameRoomInput extends Component{
     }
 
     render = () => <>
-        <button class='minimize' onClick={() => this.props.flipToFront(this.props.gameId)}>-</button>
         <FormCreator formSchema={this.formSchema()} />
     </>
     
