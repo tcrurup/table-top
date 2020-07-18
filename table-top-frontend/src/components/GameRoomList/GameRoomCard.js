@@ -14,41 +14,35 @@ focusCard - function that will enlarge the card with passed game id and minimize
 
 class GameRoomCard extends Component{
 
-    render = () => this.html(this.props.game)
-    
-    
-    focusCard = () => this.props.focusCard(this.props.game.id)
-    
-     
+    render = () => <div 
+        className={this.className()} 
+        onClick={this.focusCard}
+    >
 
-    
-    
-
-    html = game => 
-        <div 
-            className={`game-rooms-container-card-empty ${game.focus ? 'flipped' : ''}`} 
-            onClick={() => {
-                if(game.focus == false){this.focusCard(game.id)}
-            }}
-        >
-
-            <div className='flip-card'>
- 
-                <div className="flip-card-front">
-                    <GameRoomCardFront game={game} />
-                </div>
-                <div className="flip-card-back">
-                    <button class='minimize' onClick={() => this.props.flipToFront(this.props.game.id)}>-</button>
-                    < GameRoomCardBack 
-                        game={game}
-                        user={this.props.user}
-                        deleteGame = {this.props.deleteGame} 
-                        loadGame ={this.props.loadGame}
-                        createGame ={ this.props.createGame}
-                    />
-                </div>
-            </div>
-
+    <div className='flip-card'>
+        <div className="flip-card-front">
+            <GameRoomCardFront game={this.props.game} />
         </div>
+        <div className="flip-card-back">
+            <button class='minimize' onClick={() => this.props.flipToFront(this.props.game.id)}>-</button>
+            < GameRoomCardBack 
+                game={this.props.game}
+                user={this.props.user}
+                deleteGame = {this.props.deleteGame} 
+                loadGame ={this.props.loadGame}
+                createGame ={ this.props.createGame}
+            />
+        </div>
+    </div>
+    </div>
+
+    className = () => `game-rooms-container-card-empty ${this.props.game.focus ? 'flipped' : ''}`
+    
+    focusCard = () => {
+        if(this.props.game.focus == false){
+            return this.props.focusCard(this.props.game.id)
+        }
+    }
+        
 }
 export default GameRoomCard
