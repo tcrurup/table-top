@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GameRoomInput from './GameRoomInput.js'
 import GameRoom from './GameRoom.js'
+import GameRoomCardBack from './GameRoomCard/GameRoomCardBack'
 import './GameRoomList.css'
 /********PROPS********\
 
@@ -19,7 +20,7 @@ class GameRoomCard extends Component{
     
     focusCard = () => this.props.focusCard(this.props.game.id)
     
-    gameDetails = () => <span>{this.props.game.game.name}</span>  
+    gameDetails = () => <span>{this.props.game.name.name}</span>  
 
     
     cardFront = game => {
@@ -29,22 +30,7 @@ class GameRoomCard extends Component{
             return <span>-CREATE NEW-</span>
         }
     }
-    
-    cardBack = game => {
-        if(game.has_game){
-            return <GameRoom 
-                game={game} 
-                loadGame={this.props.loadGame}
-                deleteGame={this.props.deleteGame}    
-            /> 
-        } else {
-            return <GameRoomInput 
-                userId={this.props.user.id} 
-                gameId={this.props.game.id} 
-                onSubmit={this.props.createGame}
-            />
-        }
-    }
+
     html = game => 
         <div 
             className={`game-rooms-container-card-empty ${game.focus ? 'flipped' : ''}`} 
@@ -60,7 +46,13 @@ class GameRoomCard extends Component{
                 </div>
                 <div className="flip-card-back">
                     <button class='minimize' onClick={() => this.props.flipToFront(this.props.game.id)}>-</button>
-                    {this.cardBack(game)}
+                    < GameRoomCardBack 
+                        game={game}
+                        user={this.props.user}
+                        deleteGame = {this.props.deleteGame} 
+                        loadGame ={this.props.loadGame}
+                        createGame ={ this.props.createGame}
+                    />
                 </div>
             </div>
 
