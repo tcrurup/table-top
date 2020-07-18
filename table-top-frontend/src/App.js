@@ -4,7 +4,6 @@ import LoginPage from './containers/LoginPage.js'
 import HomePage from './containers/HomePage.js'
 import GamePage from './containers/GamePage.js'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import NavBar from './containers/NavBar.js'
 import RoutingManager from './services/RoutingManager.js'
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <RoutingManager />
-        < NavBar />
         <Switch>
           <Route path='/homepage' component={HomePage} /> 
           <Route path='/login' component={LoginPage} />

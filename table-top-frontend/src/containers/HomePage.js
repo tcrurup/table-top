@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GameRoomList from '../components/GameRoomList/GameRoomList.js'
+import NavBar from './NavBar.js'
 import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
 
@@ -8,6 +9,7 @@ class HomePage extends Component{
     
     render(){
         return<>
+            <NavBar />
             <h1>Hello {this.props.user.username} welcome to Table Top</h1>
             < GameRoomList
                 user={this.props.user} 
