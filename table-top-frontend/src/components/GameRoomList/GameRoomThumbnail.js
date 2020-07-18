@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GameRoom = props => <>
+const GameRoomThumbnail = props => <>
     {props.game.game.name}
     
     <button type='button' onClick={() => props.loadGame(props.game.game)}>Launch Game</button>
@@ -8,4 +8,4 @@ const GameRoom = props => <>
 </>
 
 
-export default GameRoom
+export default GameRoomThumbnail

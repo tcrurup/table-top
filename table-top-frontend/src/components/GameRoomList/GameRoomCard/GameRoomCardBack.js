@@ -1,10 +1,10 @@
 import React from 'react'
-import GameRoom from '../GameRoom.js'
+import GameRoomThumbnail from '../GameRoomThumbnail.js'
 import GameRoomInput from '../GameRoomInput.js'
 
 const GameRoomCardBack = props => {
     if(props.game.has_game){
-        return <GameRoom 
+        return <GameRoomThumbnail 
             game={props.game} 
             loadGame={props.loadGame}
             deleteGame={props.deleteGame}    

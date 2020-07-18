@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import GameRoomInput from './GameRoomInput.js'
-import GameRoom from './GameRoom.js'
 import GameRoomCardBack from './GameRoomCard/GameRoomCardBack'
 import './GameRoomList.css'
 /********PROPS********\
@@ -20,7 +18,7 @@ class GameRoomCard extends Component{
     
     focusCard = () => this.props.focusCard(this.props.game.id)
     
-    gameDetails = () => <span>{this.props.game.name.name}</span>  
+    gameDetails = () => <span>{this.props.game.game.name}</span>  
 
     
     cardFront = game => {
