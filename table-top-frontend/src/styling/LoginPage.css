@@ -1,0 +1,35 @@
+
+div#login-form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: auto;
+    padding: 25px;
+    width: 350px;
+    height: 400px;
+}
+
+div.spinning-loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    animation: spin 2s linear infinite
+}
+
+div.spinning-loader-container{
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

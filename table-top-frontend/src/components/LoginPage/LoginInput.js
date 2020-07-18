@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormCreator from '../FormCreator/FormCreator.js'
 import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
+import SpinningLoader from '../SpinningLoader/SpinningLoader.js'
 
 
 /********PROPS********\
@@ -23,12 +24,26 @@ class LoginInput extends Component{
     }
 
     render = () => <div id='login-form'>
-        <h3>Welcome To Table Top!</h3>
-        <h5>{this.props.errors}</h5>
-        {this.createForm()}
-        <h5>{this.subtext()}</h5>
+        {this.display()}
     </div>
+    
 
+    display(){
+        if(this.props.requesting){
+            return < SpinningLoader 
+                backgroundColor='gray'
+                spinnerColor='blue'
+            />
+        } else {
+            return <> 
+                <h3>Welcome To Table Top!</h3>
+                <h5>{this.props.errors}</h5>
+                {this.createForm()}
+                <h5>{this.subtext()}</h5>
+            </> 
+        }
+    }
+    
     createForm(){  
         let schema = new CreateFormSchema(this.handleSubmit, this.handleChange)
         .addFieldToSchema('text', 'username', this.state.username, 'Username:  ')
