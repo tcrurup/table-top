@@ -21,7 +21,6 @@ class User < ApplicationRecord
     def join_game(game)
         unless self.games_user_part_of.include?(game)
             self.games_user_part_of << game
-            game.players << self
         end    
     end
 
