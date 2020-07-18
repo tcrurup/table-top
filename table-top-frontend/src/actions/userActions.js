@@ -24,3 +24,9 @@ export function attemptLogin(loginData){
     }
 }
 
+export function logout(){
+    return (dispatch) => {
+        dispatch({ type: "LOGOUT_USER" })
+    }
+}
+
