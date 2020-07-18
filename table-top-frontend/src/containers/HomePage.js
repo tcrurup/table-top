@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GameRoomList from './GameRoomList.js'
+import GameRoomList from '../components/GameRoomList/GameRoomList.js'
 import GamesUserIsPlayer from './GamesUserIsPlayer.js'
 import { connect } from 'react-redux'
 

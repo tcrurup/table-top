@@ -1,5 +1,5 @@
 import React from 'react'
-import GameRoomCard from '../components/GameRoomList/GameRoomCard.js'
+import GameRoomCard from './GameRoomCard.js'
 
 
 const GameRoomList = props => {
