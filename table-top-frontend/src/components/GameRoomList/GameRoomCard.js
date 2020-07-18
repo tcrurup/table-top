@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GameRoomCardBack from './GameRoomCard/GameRoomCardBack'
+import GameRoomCardFront from './GameRoomCard/GameRoomCardFront'
 import './GameRoomList.css'
 /********PROPS********\
 
@@ -18,16 +19,10 @@ class GameRoomCard extends Component{
     
     focusCard = () => this.props.focusCard(this.props.game.id)
     
-    gameDetails = () => <span>{this.props.game.game.name}</span>  
+     
 
     
-    cardFront = game => {
-        if(game.has_game){
-            return this.gameDetails()
-        } else { 
-            return <span>-CREATE NEW-</span>
-        }
-    }
+    
 
     html = game => 
         <div 
@@ -40,7 +35,7 @@ class GameRoomCard extends Component{
             <div className='flip-card'>
  
                 <div className="flip-card-front">
-                    {this.cardFront(game)}
+                    <GameRoomCardFront game={game} />
                 </div>
                 <div className="flip-card-back">
                     <button class='minimize' onClick={() => this.props.flipToFront(this.props.game.id)}>-</button>
