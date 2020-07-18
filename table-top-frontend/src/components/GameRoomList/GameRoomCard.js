@@ -19,7 +19,7 @@ class GameRoomCard extends Component{
     
     focusCard = () => this.props.focusCard(this.props.game.id)
     cardFront = () => (this.props.game.has_game ?  this.gameDetails() : <span>-CREATE NEW-</span>)
-    gameDetails = () => <span>{this.props.game.name}</span>  
+    gameDetails = () => <span>{console.log(this.props), this.props.game.game.name}</span>  
 
     cardBack = game => {
         if(game.has_game){

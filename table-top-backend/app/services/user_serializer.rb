@@ -12,7 +12,7 @@ class UserSerializer
                     
                     include: {
                         game:{
-                            only: [:id]
+                            only: [:id, :name]
                         }
                     }
                 },
