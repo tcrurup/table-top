@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_215509) do
+ActiveRecord::Schema.define(version: 2020_07_18_183041) do
 
   create_table "chat_rooms", force: :cascade do |t|
     t.integer "game_id"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 2020_07_17_215509) do
   create_table "player_games", force: :cascade do |t|
     t.integer "player_id"
     t.integer "game_id"
+  end
+
+  create_table "user_friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
   create_table "users", force: :cascade do |t|

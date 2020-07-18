@@ -3,10 +3,13 @@ class User < ApplicationRecord
     #ASSOCIATIONS
     has_many :game_rooms
     has_many :messages
+
     has_many :player_games, foreign_key: 'player_id'
     has_many :games_user_part_of, through: :player_games, source: :game
 
-    #ACTIVE RECORD CALLBACKS    
+    has_many :user_friends
+    has_many :friends, through: :user_friends, source: :user
+
     before_create :initialize_game_rooms
 
     has_secure_password
