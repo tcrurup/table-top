@@ -8,7 +8,13 @@ class UserSerializer
         options = { 
             include: {
                 game_rooms: {
-                    only: [:name, :id, :has_game, :user_id]
+                    only: [:id, :has_game, :user_id],
+                    
+                    include: {
+                        game:{
+                            only: [:id]
+                        }
+                    }
                 },
                 games_user_part_of: {
                     only: [:name, :id]

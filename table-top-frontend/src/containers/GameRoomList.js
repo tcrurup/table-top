@@ -34,20 +34,6 @@ class GameRoomList extends Component{
     }   
 }
 
-const mapStateToProps = state => {
-    return{
-        user: state.user
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        loadGame: payload => dispatch(loadGame(payload)),
-        createGame: payload => dispatch(createGame(payload)),
-        deleteGame: payload => dispatch(deleteGame(payload)),
-        focusCard: payload => dispatch(focusCard(payload)),
-        flipCardToFront: payload => dispatch(flipCardToFront(payload))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameRoomList)
+export default GameRoomList

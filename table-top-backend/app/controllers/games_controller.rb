@@ -7,9 +7,7 @@ class GamesController < ApplicationController
     end
     
     def delete
-        user = User.find(game_params[:user_id].to_i)
-        game_room = GameRoom.find(game_params[:id].to_i)
-        game_room.delete_game if user.has_room?(game_room)
+        puts game_params
         render json: user.game_rooms
     end
 

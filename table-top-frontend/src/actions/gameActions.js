@@ -23,6 +23,7 @@ export function createGame(gameData){
 export function loadGame(gameData){
     return (dispatch) => {
         dispatch({type: "START_USER_REQUEST"})
+        console.log(gameData)
         new FetchRequest('http://localhost:3001/games/load', serializeGame(gameData))
         .onSuccess( object => {
             dispatch({type: "LOAD_GAME", payload: object})
