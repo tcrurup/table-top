@@ -46,4 +46,20 @@ export function createFormField(fieldLabel, options= {}){
     return {[fieldLabel]: { type: 'text', id: fieldLabel, ...options }}
 }  
 
+export function createInputWithLabel(type, id, label, value, onChange=null) {  
+    return(
+        <div className='form-input'>
+            <label htmlFor={id}>{label}</label>
+            <input 
+                type={type} 
+                id={id} 
+                value={value} 
+                onChange={onChange}
+            />
+        </div>
+    )
+}
+
+
+
 export default FormCreator

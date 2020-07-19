@@ -11,6 +11,12 @@ div#login-form{
     height: 400px;
 }
 
+span.password-confirm-subtext{
+    font-size: 10px;
+    font-weight: bold;
+    color: red;
+}
+
 div.spinning-loader{
     position: absolute;
     top: 0;
@@ -21,6 +27,20 @@ div.spinning-loader{
     height: 50%;
     margin: auto;
     animation: spin 2s linear infinite
+}
+
+span.error{
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+}
+
+div#login-form div.form-input{
+        padding-top: 10px;
+}
+
+div#login-form div.form-input label{
+    margin-right: 5px;
 }
 
 div.spinning-loader-container{

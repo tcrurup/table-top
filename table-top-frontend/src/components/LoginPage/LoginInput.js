@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import FormCreator from '../FormCreator/FormCreator.js'
-import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
+import { createInputWithLabel } from '../FormCreator/FormCreator.js'
 import SpinningLoader from '../SpinningLoader/SpinningLoader.js'
+
+
 
 
 /********PROPS********\
@@ -18,6 +19,8 @@ class LoginInput extends Component{
         this.state = {
             username: '',
             password: '',
+            passwordConfirm: '',
+            formError: false,
             email: '',
             type: 'LOGIN',
         }
@@ -37,6 +40,7 @@ class LoginInput extends Component{
         } else {
             return <> 
                 <h3>Welcome To Table Top!</h3>
+                {this.displayErrors()}
                 {this.createForm()}
                 <h5>{this.subtext()}</h5>
             </> 
@@ -44,16 +48,43 @@ class LoginInput extends Component{
     }
     
     createForm(){  
-        let schema = new CreateFormSchema(this.handleSubmit, this.handleChange)
-        .addFieldToSchema('text', 'username', this.state.username, 'Username:  ')
-        .addFieldToSchema('password', 'password', this.state.password, 'Password:  ')
-        if(this.state.type === 'SIGNUP'){ 
-            schema.addFieldToSchema('email', 'email', this.state.email, "Email:  ")
-        }
-        return <FormCreator formSchema={schema} errors={this.props.errors}/>
+        return <form onSubmit={this.handleSubmit}>
+            {createInputWithLabel('text', 'username', 'Username: ', this.state.username, this.handleChange)}
+            {createInputWithLabel('password', 'password', 'Password: ', this.state.password, this.handleChange)}
+            {this.state.type === 'SIGNUP' ? this.additionSignUpFields() : null}
+            <input type='submit' id='button' value="SUBMIT" />
+        </form>
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
+    confirmPasswords = () => this.state.password === this.state.passwordConfirm
+    displayErrors = () => {
+        if(this.state.formError){
+            return <span className='error'>{this.state.formError}</span>
+        }
+    }
+
+    additionSignUpFields = () => <>
+        {this.passwordConfirmField()}
+        {createInputWithLabel('email', 'email', 'Email: ', this.state.email, this.handleChange)}
+    </>
+
+    passwordConfirmField = () => <>
+        <div className='form-input'>
+            <label htmlFor={'passwordConfirm'}>{'Confirm: '}</label>
+            <input
+                className={this.confirmPasswords() ? 'match' : 'no-match' } 
+                type='password' 
+                id='passwordConfirm' 
+                value={this.state.passwordConfirm} 
+                onChange={this.handleChange}
+            />
+            
+        </div>
+        <span className='password-confirm-subtext'>
+            {!this.confirmPasswords() ? 'passwords do not match' : null }
+        </span>
+    </>
 
     subtext = () => <>
         {this.state.type === 'SIGNUP' ? 'Already signed up?  ' : 'Not signed up yet?  '} 
@@ -64,6 +95,21 @@ class LoginInput extends Component{
         > {this.state.type === 'SIGNUP ? ' ? 'Log in' : 'Sign Up'} 
         </button> 
     </>
+
+    formIsVerified = () =>{
+        let verified = true
+
+        if(this.state.type === 'SIGNUP'){
+            if(this.state.password !== this.state.passwordConfirm){ 
+                this.setFormError('Passwords need to match')
+                verified = false
+            }
+        }
+
+        return verified
+    }
+
+    setFormError = message => this.setState({ formError: message })
     
     handleChange = event => {
         event.preventDefault()
@@ -72,8 +118,10 @@ class LoginInput extends Component{
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.submit({ user: {...this.state} })
-        this.clearFields()
+        if(this.formIsVerified()){  
+            this.props.submit({ user: {...this.state} })
+            this.clearFields()
+        }
     }
 
     toggleFormType = event => {
