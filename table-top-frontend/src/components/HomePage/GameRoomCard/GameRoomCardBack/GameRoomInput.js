@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import FormCreator from '../FormCreator/FormCreator.js'
-import CreateFormSchema from '../FormCreator/CreateFormSchema.js'
+import FormCreator from '../../../FormCreator/FormCreator.js'
+import CreateFormSchema from '../../../FormCreator/CreateFormSchema.js'
 
 
 /********PROPS********\

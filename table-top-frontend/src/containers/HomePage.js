@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GameRoomList from '../components/GameRoomList/GameRoomList.js'
+import GameRoomList from '../components/HomePage/GameRoomList.js'
 import NavBar from './NavBar.js'
 import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'

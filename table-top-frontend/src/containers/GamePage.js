@@ -2,23 +2,18 @@ import React, { Component }from 'react'
 import ChatBox from '../components/GamePage/ChatBox.js'
 import NavBar from './NavBar.js'
 import { connect } from 'react-redux'
-import './GamePage.css'
+import { unloadGame } from '../actions/gameActions.js'
+import '../styling/GamePage.css'
 
 class GamePage extends Component{
 
-    renderChatBox = () => <> 
-    
-        < ChatBox 
-            userId = {this.props.userId}
-            game={this.props.game}
-        />
-    </> 
-        
-    
-    
+    renderChatBox = () => < ChatBox 
+        userId = {this.props.userId}
+        game={this.props.game}
+    />    
     
     render = () => <>
-        <NavBar options={{}} />
+        <NavBar options={{ "Homepage": this.props.unloadGame }} />
         <div id='game-page'>
             {this.props.game.name}
             {this.renderChatBox()}
@@ -34,4 +29,10 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(GamePage)
+const mapDispatchToProps = dispatch => {
+    return {
+        unloadGame: () => dispatch(unloadGame())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

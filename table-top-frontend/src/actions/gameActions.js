@@ -34,6 +34,12 @@ export function loadGame(gameData){
     }
 }
 
+export function unloadGame(){
+    return (dispatch) => { 
+        dispatch({type: 'UNLOAD_GAME', payload: {} })
+        dispatch({type: 'APP_REDIRECT', route: '/homepage' })
+    }
+}
 
 export function focusCard(data){ return { type:'FOCUS_CARD', payload: data}}
 export function flipCardToFront(gameId){ return { type:'FLIP_TO_FRONT', payload: gameId}}

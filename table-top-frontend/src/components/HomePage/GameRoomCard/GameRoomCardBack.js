@@ -1,6 +1,6 @@
 import React from 'react'
-import GameRoomThumbnail from '../GameRoomThumbnail.js'
-import GameRoomInput from '../GameRoomInput.js'
+import GameRoomThumbnail from './GameRoomCardBack/GameRoomThumbnail.js'
+import GameRoomInput from './GameRoomCardBack/GameRoomInput.js'
 
 const GameRoomCardBack = props => {
     if(props.game.has_game){

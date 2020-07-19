@@ -1,6 +1,6 @@
 import React from 'react'
 import GameRoomCard from './GameRoomCard.js'
-import ListRow from './ListRow.js'
+import ListRow from './GameRoomList/ListRow.js'
 
 
 const GameRoomList = props => {
