@@ -10,10 +10,15 @@ class User < ApplicationRecord
     has_many :user_friends
     has_many :friends, through: :user_friends, class_name: 'User'
 
+    
+    #VALIDATIONS
+    validates :username, presence: true, uniqueness: true
+    validates :email, uniqueness: true
+    
     before_create :initialize_game_rooms
 
     has_secure_password
-    #has_secure_token :id_token
+    
 
     MAX_GAMEROOMS = 3
     

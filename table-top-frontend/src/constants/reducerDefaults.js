@@ -1,7 +1,7 @@
 export const userDefault = {
     username: '', 
     id: null, 
-    errors: null, 
+    errors: [], 
     requesting: false,
     game_rooms: [],
     view: {

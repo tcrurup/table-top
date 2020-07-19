@@ -31,8 +31,14 @@ class UsersController < ApplicationController
 
     def createUser(user_params)
         user_params
-        user = User.create( user_params.except(:type) )
-        render json: UserSerializer.new(user).to_serialized_json
+        user = User.new( user_params.except(:type) )
+        if user.valid?
+            user.save
+            render json: UserSerializer.new(user).to_serialized_json
+        else 
+            render json: { errors: user.errors.full_messages }, status: 401
+        end
+        
     end
 
     def onLoginSuccess

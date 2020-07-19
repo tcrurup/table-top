@@ -27,6 +27,9 @@ class LoginInput extends Component{
     }
 
     render = () => <div id='login-form'>
+        <h3>Welcome To Table Top!</h3>
+        {this.props.errors.map(error => <span class='error'>{error}</span>)}
+        {this.displayErrors()}
         {this.display()}
     </div>
     
@@ -39,8 +42,6 @@ class LoginInput extends Component{
             />
         } else {
             return <> 
-                <h3>Welcome To Table Top!</h3>
-                {this.displayErrors()}
                 {this.createForm()}
                 <h5>{this.subtext()}</h5>
             </> 
@@ -58,9 +59,12 @@ class LoginInput extends Component{
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
     confirmPasswords = () => this.state.password === this.state.passwordConfirm
+    
     displayErrors = () => {
         if(this.state.formError){
-            return <span className='error'>{this.state.formError}</span>
+            return <span className='error'>
+                {this.state.formError}    
+            </span>
         }
     }
 
