@@ -37,7 +37,6 @@ class LoginInput extends Component{
         } else {
             return <> 
                 <h3>Welcome To Table Top!</h3>
-                <h5>{this.props.errors}</h5>
                 {this.createForm()}
                 <h5>{this.subtext()}</h5>
             </> 
