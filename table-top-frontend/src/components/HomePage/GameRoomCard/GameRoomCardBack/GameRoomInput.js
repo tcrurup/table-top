@@ -38,12 +38,11 @@ class GameRoomInput extends Component{
     handleSubmit = event =>{
         event.preventDefault()
         const data = {
-            game: {
-                ...this.state, 
-                userId: this.props.userId,
-                id: this.props.gameId
-            }
+            ...this.state, 
+            user_id: this.props.userId,
+            id: this.props.gameId
         }
+        console.log(data)
         this.props.onSubmit(data)
     }
 }

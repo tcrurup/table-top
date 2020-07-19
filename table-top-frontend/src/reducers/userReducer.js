@@ -8,18 +8,15 @@ export default function userReducer( state = userDefault, action){
             return { ...state, requesting: true }
 
         case "LOGIN_SUCCESS":
-            const userData = action.credentials
-            console.log(action.credentials)
+            const userData = action.userData
+            console.log(userData)
             let slot = 0; 
             return {
                 ...state,
                 username: userData.username,
                 id: userData.id, 
                 requesting: false,
-                games: userData.game_rooms.map( room => {
-                    slot++
-                    return Object.assign({}, room, {focus: false} )
-                }),
+                game_rooms: userData.game_rooms.map(room => { return {...room, focus: false} }),
                 games_a_part_of: [...userData.games_user_part_of]
            }
 
@@ -39,8 +36,7 @@ export default function userReducer( state = userDefault, action){
             }
 
         case "FOCUS_CARD":
-            
-            let newGames = state.games.map( game => {
+            let newGames = state.game_rooms.map( game => {
                 if(game.id === action.payload){
                     game.focus = true;
                 } else {
@@ -51,14 +47,14 @@ export default function userReducer( state = userDefault, action){
             console.log(action)
             return{
                 ...state,
-                games: newGames
+                game_rooms: newGames
             }
 
         case "UPDATE_GAMES": 
             console.log("ACTION: UPDATE_GAMES")
             return{ 
                 ...state, 
-                games: action.payload.map( game => {
+                game_rooms: action.payload.map( game => {
                     return {...game, focus: false}
                 }), 
                 requesting: false 
@@ -68,7 +64,7 @@ export default function userReducer( state = userDefault, action){
         case "FLIP_TO_FRONT":
             return{
                 ...state,
-                games: state.games.map( game => {
+                game_rooms: state.game_rooms.map( game => {
                     if(game.id === action.payload){
                         return {...game, focus: false}
                     } else { return game }

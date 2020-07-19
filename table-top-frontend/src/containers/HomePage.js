@@ -23,7 +23,7 @@ class HomePage extends Component{
             <h1>Hello {this.props.user.username} welcome to Table Top</h1>
             < GameRoomList
                 user={this.props.user} 
-                gameRooms={this.props.user.games}
+                gameRooms={this.props.user.game_rooms}
                 gamesWithCharacters={this.props.user.games_a_part_of} 
                 loadGame = {this.props.loadGame}
                 createGame = {this.props.createGame}

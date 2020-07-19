@@ -16,7 +16,7 @@ class GamesController < ApplicationController
 
     def new_game_room
         puts params
-        user = User.find_by(id: game_params[:userId])
+        user = User.find_by(id: game_params[:user_id])
         game_room = GameRoom.find_by(id: game_params[:id])
         puts game_room.has_game?
         if user.has_room?(game_room)

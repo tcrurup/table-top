@@ -13,8 +13,10 @@ export function deleteGame(gameData){
 
 export function createGame(gameData){
     return (dispatch) => {
-        new FetchRequest('http://localhost:3001/games/create', gameData)
+        console.log(gameData)
+        new FetchRequest('http://localhost:3001/games/create', serializeGame(gameData))
         .onSuccess(object => dispatch({type: "UPDATE_GAMES", payload: object}))
+        
         .onFailure(() => {console.log('failure')})
         .startFetch()
     }

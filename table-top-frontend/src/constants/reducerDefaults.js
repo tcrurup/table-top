@@ -3,7 +3,7 @@ export const userDefault = {
     id: null, 
     errors: null, 
     requesting: false,
-    games: [],
+    game_rooms: [],
     view: {
         route: '/login'
     },

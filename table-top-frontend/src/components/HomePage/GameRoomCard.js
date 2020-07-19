@@ -14,11 +14,12 @@ focusCard - function that will enlarge the card with passed game id and minimize
 
 const GameRoomCard = props =>{
 
-    const className = () => `game-rooms-container-card-empty ${props.game.focus ? 'flipped' : ''}`
+    const className = () => `game-rooms-container-card-empty ${props.game_room.focus ? 'flipped' : ''}`
     
     const focusCard = () => {
-        if(props.game.focus == false){
-            return props.focusCard(props.game.id)
+        console.log(props)
+        if(props.game_room.focus == false){
+            return props.focusCard(props.game_room.id)
         }
     }
     
@@ -26,12 +27,12 @@ const GameRoomCard = props =>{
         <div className={className()} onClick={focusCard}>
             <div className='flip-card'>
                 <div className="flip-card-front">
-                    <GameRoomCardFront game={props.game} />
+                    <GameRoomCardFront game={props.game_room.game} />
                 </div>
                 <div className="flip-card-back">
-                    <button class='minimize' onClick={() => props.flipToFront(props.game.id)}>-</button>
+                    <button class='minimize' onClick={() => props.flipToFront(props.game_room.id)}>-</button>
                     < GameRoomCardBack 
-                        game={props.game}
+                        game_room={props.game_room}
                         user={props.user}
                         deleteGame = {props.deleteGame} 
                         loadGame ={props.loadGame}

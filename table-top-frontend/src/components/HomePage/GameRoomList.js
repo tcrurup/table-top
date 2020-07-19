@@ -6,9 +6,10 @@ import ListRow from './GameRoomList/ListRow.js'
 const GameRoomList = props => {
     
     const createGameCard = () => {
-        return props.gameRooms.map( game =>
-            <GameRoomCard 
-                game={game}
+        return props.gameRooms.map( game_room => {
+            console.log(game_room)
+            return <GameRoomCard 
+                game_room={game_room}
                 user={props.user} 
                 focusCard={props.focusCard}
                 loadGame={props.loadGame}
@@ -16,7 +17,7 @@ const GameRoomList = props => {
                 deleteGame={props.deleteGame}
                 flipToFront={props.flipCardToFront}    
             />
-        )
+        })
     }
 
     const createGamesWithCharactersList = () => {
