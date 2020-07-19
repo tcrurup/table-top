@@ -17,6 +17,10 @@ const FormCreator = props => {
             </div>
         )
     }
+
+    function showErrors(errors){
+        if(errors){ return <div>{errors}</div> }
+    }
     
    
     return (
@@ -32,7 +36,7 @@ const FormCreator = props => {
                 })
                 return input
             })}
-
+            {showErrors(props.errors)}
             <input type='submit' id='button' value="SUBMIT" />
         </form>
     )

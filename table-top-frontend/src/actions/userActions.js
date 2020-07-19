@@ -12,8 +12,8 @@ export function attemptLogin(loginData){
             dispatch({ type: "LOGIN_SUCCESS", userData: data })
             dispatch({ type: "APP_REDIRECT", route: '/homepage' })
         }
-        const failure = data => {
-            dispatch({ type:"LOGIN_FAILURE", errors: data.errors})
+        const failure = error_message => {
+            dispatch({ type:"LOGIN_FAILURE", ...error_message})
         }
         
         dispatch({ type:"ATTEMPT_LOGIN"})

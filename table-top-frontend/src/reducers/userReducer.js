@@ -2,39 +2,32 @@ import { userDefault } from '../constants/reducerDefaults.js'
 
 export default function userReducer( state = userDefault, action){
 
+    console.log(action)
+    const userData = action.userData
+    
     switch(action.type){
 
-        case "ATTEMPT_LOGIN":
-            return { ...state, requesting: true }
+        
+        case "ATTEMPT_LOGIN": return { ...state, requesting: true }
+        case "LOGOUT_USER": return userDefault
+        case "APP_REDIRECT": return{...state, view: { route: action.route }}
 
         case "LOGIN_SUCCESS":
-            const userData = action.userData
-            console.log(userData)
-            let slot = 0; 
             return {
                 ...state,
-                username: userData.username,
-                id: userData.id, 
+                ...userData,
                 requesting: false,
                 game_rooms: userData.game_rooms.map(room => { return {...room, focus: false} }),
-                games_a_part_of: [...userData.games_user_part_of]
            }
 
         case "LOGIN_FAILURE":
-           return{
+        console.log(action)   
+        return{
                ...state,
                errors: action.errors, 
                requesting: false
            }
-
-        case "LOGOUT_USER": return userDefault
-
-        case "APP_REDIRECT":
-            return{
-                ...state,
-                view: { route: action.route }
-            }
-
+        
         case "FOCUS_CARD":
             let newGames = state.game_rooms.map( game => {
                 if(game.id === action.payload){
@@ -44,7 +37,6 @@ export default function userReducer( state = userDefault, action){
                 }
                 return game
             })
-            console.log(action)
             return{
                 ...state,
                 game_rooms: newGames

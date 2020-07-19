@@ -32,15 +32,15 @@ class FetchRequest{
     startFetch = () =>{
         fetch(this.url, this.serialize(this.data))
         .then(response => {
-            console.log(response)
-            if(!response.ok){ throw new Error(response) }
+            if(!response.ok){ throw response }
             return response.json() 
         })
         .then( object => {
-            this.success(object)  
+            console.log(object)
+            return this.success(object)  
         }) 
-        .catch(error => {
-            this.failure(error)
+        .catch(response => {
+            return response.json().then(error => this.failure(error))
         })
     }
 

@@ -2,8 +2,6 @@ class UsersController < ApplicationController
     
     def login
         type = user_params[:type]        
-        
-        
         if type === 'LOGIN'
             attemptLogin(user_params.except(:type))            
         elsif type == 'SIGNUP'
@@ -37,7 +35,8 @@ class UsersController < ApplicationController
     end
 
     def onLoginFailure(message = "")
-        render json: { errors: message, user: {} }
+        puts 'login failure'
+        render json: { errors: message }, status: 401
     end
 
     def user_params

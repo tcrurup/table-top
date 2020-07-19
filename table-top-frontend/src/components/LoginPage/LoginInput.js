@@ -51,7 +51,7 @@ class LoginInput extends Component{
         if(this.state.type === 'SIGNUP'){ 
             schema.addFieldToSchema('email', 'email', this.state.email, "Email:  ")
         }
-        return <FormCreator formSchema={schema} />
+        return <FormCreator formSchema={schema} errors={this.props.errors}/>
     }
 
     clearFields = () => this.setState({ username: '', password: '', email: ''})
