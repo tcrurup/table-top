@@ -2,7 +2,7 @@ class FetchRequest{
 
     serialize(data){
         return{
-            method: 'POST',
+            method: this.method,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -11,9 +11,10 @@ class FetchRequest{
         }    
     }
     
-    constructor(url, data){
+    constructor(url, data, method='GET'){
         this.url = url
         this.data = data
+        this.method = method
         this.succees = console.log
         this.failure = console.log
         return this
@@ -40,7 +41,7 @@ class FetchRequest{
             return this.success(object)  
         }) 
         .catch(response => {
-            return response.json().then(error => this.failure(error))
+            return this.failure(response)
         })
     }
 

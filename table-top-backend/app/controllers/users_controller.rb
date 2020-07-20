@@ -9,6 +9,12 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        puts user_params
+        User.find(user_params[:id]).destroy()
+        render json: {}, status: 200
+    end
+
     def user
         @user
     end
@@ -50,7 +56,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:username, :password, :email, :type)
+        params.require(:user).permit(:username, :password, :email, :type, :id)
     end
 
 end

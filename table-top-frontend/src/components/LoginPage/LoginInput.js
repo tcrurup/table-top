@@ -31,10 +31,9 @@ class LoginInput extends Component{
     }
 
     render = () => <>
-        <h3>Welcome To Table Top!</h3> 
-        
         <div id='login-form'>
-            {this.props.backendErrors.map(error => <span class='error'>{error}</span>)}
+            <h3>Welcome To Table Top!</h3> 
+            <span class='error'>{this.state.backendErrors}</span>
             <span className='error'> {this.state.formError} </span>
             {this.displayForm()}
         </div>
@@ -43,7 +42,7 @@ class LoginInput extends Component{
     /***************************************/
 
     displayForm = () => { 
-        if(this.state.requesting){
+        if(this.props.requesting){
             return < SpinningLoader backgroundColor='gray' spinnerColor='blue' />
         } else {
             return <>
