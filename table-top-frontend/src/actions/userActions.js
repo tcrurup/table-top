@@ -1,4 +1,4 @@
-import { loginUrl } from '../services/backendRouting.js'
+import { LOGIN_PATH } from '../constants/backendRoutes.js'
 import { serializeUserGames } from '../services/serializers'
 import FetchRequest from '../services/FetchRequest.js'
 
@@ -18,7 +18,8 @@ export function attemptLogin(loginData){
         
         dispatch({ type:"ATTEMPT_LOGIN"})
         
-        new FetchRequest(loginUrl(), loginData)
+        console.log(LOGIN_PATH)
+        new FetchRequest(LOGIN_PATH, loginData)
         .onSuccess(success)
         .onFailure(failure)
         .startFetch()
@@ -41,6 +42,7 @@ export function deleteUser(userId){
         const failure = data =>{
             console.log(data)
         }
+        new FetchRequest('')
     
     }
 }
