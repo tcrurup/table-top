@@ -9,7 +9,7 @@ class LoginPage extends Component{
     render= () => <div>
         <LoginInput 
             submit={this.props.attemptLogin}
-            errors={[ ...this.props.errors ]}
+            backendErrors={[ ...this.props.errors ]}
             requesting={this.props.requesting}
         />
     </div>      

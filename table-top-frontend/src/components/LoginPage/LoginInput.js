@@ -30,10 +30,11 @@ class LoginInput extends Component{
         }
     }
 
-    render = () => <> 
+    render = () => <>
+        <h3>Welcome To Table Top!</h3> 
+        
         <div id='login-form'>
-            <h3>Welcome To Table Top!</h3>
-            {this.props.errors.map(error => <span class='error'>{error}</span>)}
+            {this.props.backendErrors.map(error => <span class='error'>{error}</span>)}
             <span className='error'> {this.state.formError} </span>
             {this.displayForm()}
         </div>
@@ -51,7 +52,7 @@ class LoginInput extends Component{
                     {createInputWithLabel('password', 'password', 'Password: ', this.state.password, this.handleChange) /*Imported function*/}
                     {this.conditionalSignUpFields()}
                     <input type='submit' id='button' value="SUBMIT" />
-                    <h5>{this.subtext()}</h5>
+                    <h5>{this.formFooter()}</h5>
                 </form>
             </>
         }        
@@ -82,7 +83,6 @@ class LoginInput extends Component{
         this.setState({ [event.target.id]: event.target.value })
     }
 
-
     conditionalSignUpFields = () => {
         if(this.state.type === 'SIGNUP'){
             return <>
@@ -104,15 +104,23 @@ class LoginInput extends Component{
         } else {return null}
     }    
 
-    subtext = () => <>
-        {this.state.type === 'SIGNUP' ? 'Already signed up?  ' : 'Not signed up yet?  '} 
-        <button 
-            type='button' 
-            className='link' 
-            onClick={this.toggleFormType} 
-        > {this.state.type === 'SIGNUP' ? 'Log in' : 'Sign Up'} 
-        </button> 
-    </>
+    formFooter = () => {
+         
+        const toggleFormType = event => {
+            event.preventDefault()
+            this.state.type === 'LOGIN' ? this.setState({ type: "SIGNUP" }) : this.setState({ type: "LOGIN" })
+        }
+
+        return <>
+            {this.state.type === 'SIGNUP' ? 'Already signed up?  ' : 'Not signed up yet?  '} 
+            <button 
+                type='button' 
+                className='link' 
+                onClick={toggleFormType} 
+            > {this.state.type === 'SIGNUP' ? 'Log in' : 'Sign Up'} 
+            </button> 
+        </>
+    }
 
     
 
@@ -122,10 +130,7 @@ class LoginInput extends Component{
 
     
 
-    toggleFormType = event => {
-        event.preventDefault()
-        this.state.type === 'LOGIN' ? this.setState({ type: "SIGNUP" }) : this.setState({ type: "LOGIN" })
-    }    
+      
 }
 
 export default LoginInput
