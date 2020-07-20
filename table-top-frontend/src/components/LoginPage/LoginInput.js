@@ -57,7 +57,7 @@ class LoginInput extends Component{
         </form>
     }
 
-    clearFields = () => this.setState({ username: '', password: '', email: ''})
+    clearFields = () => this.setState({ username: '', password: '', passwordConfirm:'', email: ''})
     confirmPasswords = () => this.state.password === this.state.passwordConfirm
     
     displayErrors = () => {
@@ -114,6 +114,7 @@ class LoginInput extends Component{
     }
 
     setFormError = message => this.setState({ formError: message })
+    clearErrors = () => this.setState({ formError: [] })
     
     handleChange = event => {
         event.preventDefault()
@@ -122,6 +123,7 @@ class LoginInput extends Component{
 
     handleSubmit = event => {
         event.preventDefault()
+        this.clearErrors()
         if(this.formIsVerified()){  
             this.props.submit({ user: {...this.state} })
             this.clearFields()

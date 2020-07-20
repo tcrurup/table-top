@@ -46,8 +46,7 @@ class UsersController < ApplicationController
     end
 
     def onLoginFailure(message = "")
-        puts 'login failure'
-        render json: { errors: message }, status: 401
+        render json: { errors: [message] }, status: 401
     end
 
     def user_params
