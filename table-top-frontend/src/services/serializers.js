@@ -21,4 +21,16 @@ export function serializeGame(game){
     }
 }
 
+export function serializeLoginAttempt(credentials){
+    return{
+        user: {
+            serialized_to:'loginAttempt',
+            username: credentials.username,
+            password: credentials.password,
+            email: credentials.email,
+            type: credentials.type,
+        }
+    }
+}
+
 

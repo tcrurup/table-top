@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { createInputWithLabel } from '../FormCreator/FormCreator.js'
+import { serializeLoginAttempt } from '../../services/serializers'
 import SpinningLoader from '../SpinningLoader/SpinningLoader.js'
 
 
@@ -11,84 +12,97 @@ import SpinningLoader from '../SpinningLoader/SpinningLoader.js'
     submit - calls the dispatch action to submit details to backend
 
 \********PROPS********/
+const loginInputDefault = {
+    username: '',
+    password: '',
+    passwordConfirm: '',
+    formError: false,
+    email: '',
+    type: 'LOGIN',
+}
 
 class LoginInput extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            username: '',
-            password: '',
-            passwordConfirm: '',
-            formError: false,
-            email: '',
-            type: 'LOGIN',
+            ...loginInputDefault
         }
     }
 
-    render = () => <div id='login-form'>
-        <h3>Welcome To Table Top!</h3>
-        {this.props.errors.map(error => <span class='error'>{error}</span>)}
-        {this.displayErrors()}
-        {this.display()}
-    </div>
-    
-
-    display(){
-        if(this.props.requesting){
-            return < SpinningLoader 
-                backgroundColor='gray'
-                spinnerColor='blue'
-            />
-        } else {
-            return <> 
-                {this.createForm()}
-                <h5>{this.subtext()}</h5>
-            </> 
-        }
-    }
-    
-    createForm(){  
-        return <form onSubmit={this.handleSubmit}>
-            {createInputWithLabel('text', 'username', 'Username: ', this.state.username, this.handleChange)}
-            {createInputWithLabel('password', 'password', 'Password: ', this.state.password, this.handleChange)}
-            {this.state.type === 'SIGNUP' ? this.additionSignUpFields() : null}
-            <input type='submit' id='button' value="SUBMIT" />
-        </form>
-    }
-
-    clearFields = () => this.setState({ username: '', password: '', passwordConfirm:'', email: ''})
-    confirmPasswords = () => this.state.password === this.state.passwordConfirm
-    
-    displayErrors = () => {
-        if(this.state.formError){
-            return <span className='error'>
-                {this.state.formError}    
-            </span>
-        }
-    }
-
-    additionSignUpFields = () => <>
-        {this.passwordConfirmField()}
-        {createInputWithLabel('email', 'email', 'Email: ', this.state.email, this.handleChange)}
-    </>
-
-    passwordConfirmField = () => <>
-        <div className='form-input'>
-            <label htmlFor={'passwordConfirm'}>{'Confirm: '}</label>
-            <input
-                className={this.confirmPasswords() ? 'match' : 'no-match' } 
-                type='password' 
-                id='passwordConfirm' 
-                value={this.state.passwordConfirm} 
-                onChange={this.handleChange}
-            />
-            
+    render = () => <> 
+        <div id='login-form'>
+            <h3>Welcome To Table Top!</h3>
+            {this.props.errors.map(error => <span class='error'>{error}</span>)}
+            <span className='error'> {this.state.formError} </span>
+            {this.displayForm()}
         </div>
-        <span className='password-confirm-subtext'>
-            {!this.confirmPasswords() ? 'passwords do not match' : null }
-        </span>
     </>
+      
+    /***************************************/
+
+    displayForm = () => { 
+        if(this.state.requesting){
+            return < SpinningLoader backgroundColor='gray' spinnerColor='blue' />
+        } else {
+            return <>
+                <form onSubmit={this.handleSubmit}>
+                    {createInputWithLabel('text', 'username', 'Username: ', this.state.username, this.handleChange)  /*Imported function*/}  
+                    {createInputWithLabel('password', 'password', 'Password: ', this.state.password, this.handleChange) /*Imported function*/}
+                    {this.conditionalSignUpFields()}
+                    <input type='submit' id='button' value="SUBMIT" />
+                    <h5>{this.subtext()}</h5>
+                </form>
+            </>
+        }        
+    }
+
+    handleSubmit = event => {
+
+        const verified = () => {
+            let verified = true
+        if(this.state.type === 'SIGNUP'){
+            if(this.state.password !== this.state.passwordConfirm){ 
+                this.setState({ formError: 'Passwords need to match' })
+                verified = false
+            }
+        }
+        return verified
+        }
+
+        event.preventDefault()
+        if(verified()){  
+            this.props.submit(serializeLoginAttempt(this.state) /*Imported function*/)
+            this.setState({...loginInputDefault})//Reset form state and fields
+        }
+    }
+
+    handleChange = event => {
+        event.preventDefault()
+        this.setState({ [event.target.id]: event.target.value })
+    }
+
+
+    conditionalSignUpFields = () => {
+        if(this.state.type === 'SIGNUP'){
+            return <>
+                <div className='form-input'>
+                    <label htmlFor={'passwordConfirm'}>{'Confirm: '}</label>
+                    <input
+                        className={this.state.password === this.state.passwordConfirm ? 'match' : 'no-match' } 
+                        type='password' 
+                        id='passwordConfirm' 
+                        value={this.state.passwordConfirm} 
+                        onChange={this.handleChange}
+                    />
+                </div>
+                <span className='password-confirm-subtext'>
+                    {this.state.password === this.state.passwordConfirm ? null : 'passwords do not match' }
+                </span>
+                {createInputWithLabel('email', 'email', 'Email: ', this.state.email, this.handleChange) /*Imported function*/}
+            </>
+        } else {return null}
+    }    
 
     subtext = () => <>
         {this.state.type === 'SIGNUP' ? 'Already signed up?  ' : 'Not signed up yet?  '} 
@@ -96,39 +110,17 @@ class LoginInput extends Component{
             type='button' 
             className='link' 
             onClick={this.toggleFormType} 
-        > {this.state.type === 'SIGNUP ? ' ? 'Log in' : 'Sign Up'} 
+        > {this.state.type === 'SIGNUP' ? 'Log in' : 'Sign Up'} 
         </button> 
     </>
 
-    formIsVerified = () =>{
-        let verified = true
-
-        if(this.state.type === 'SIGNUP'){
-            if(this.state.password !== this.state.passwordConfirm){ 
-                this.setFormError('Passwords need to match')
-                verified = false
-            }
-        }
-
-        return verified
-    }
-
-    setFormError = message => this.setState({ formError: message })
-    clearErrors = () => this.setState({ formError: [] })
     
-    handleChange = event => {
-        event.preventDefault()
-        this.setState({ [event.target.id]: event.target.value })
-    }
 
-    handleSubmit = event => {
-        event.preventDefault()
-        this.clearErrors()
-        if(this.formIsVerified()){  
-            this.props.submit({ user: {...this.state} })
-            this.clearFields()
-        }
-    }
+    
+    
+    
+
+    
 
     toggleFormType = event => {
         event.preventDefault()
