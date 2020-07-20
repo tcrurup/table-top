@@ -3,14 +3,15 @@ import GameRoomList from '../components/HomePage/GameRoomList.js'
 import NavBar from './NavBar.js'
 import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
-import { logout } from '../actions/userActions.js'
+import { logout, deleteUser } from '../actions/userActions.js'
 import '../styling/GameRoomList.css'
 
 class HomePage extends Component{
     
     navBarOptions = () => {
         return {
-            'Log Out': this.props.logOutUser
+            'Log Out': this.props.logOutUser,
+            'Delete Account' : () => this.props.deleteUser(this.props.user.id)
         }
     }
     
@@ -48,6 +49,7 @@ const mapDispatchToProps = dispatch => {
         deleteGame: payload => dispatch(deleteGame(payload)),
         focusCard: payload => dispatch(focusCard(payload)),
         flipCardToFront: payload => dispatch(flipCardToFront(payload)),
+        deleteUser: userId => dispatch(deleteUser(userId)),
         logOutUser: () => dispatch(logout())
     }
 }

@@ -32,3 +32,16 @@ export function logout(){
     }
 }
 
+export function deleteUser(userId){
+    return (dispatch) => {
+
+        const success = data => {
+            dispatch({ type:"LOGOUT_USER"})
+        }
+        const failure = data =>{
+            console.log(data)
+        }
+    
+    }
+}
+
