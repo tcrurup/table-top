@@ -2,7 +2,7 @@ import React from 'react'
 
 const GameRoomCardFront = props => {
     
-    const gameDetails = () => <span>{console.log(props.game.name)}</span> 
+    const gameDetails = () => <span>{props.game.name}</span> 
     console.log(props)
     if(props.game){
         return gameDetails()

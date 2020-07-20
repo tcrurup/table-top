@@ -8,11 +8,11 @@ export function attemptLogin(loginData){
     return (dispatch) => {
         
         const success = data => {
-            console.log(data)
             dispatch({ type: "LOGIN_SUCCESS", userData: data })
             dispatch({ type: "APP_REDIRECT", route: '/homepage' })
         }
         const failure = error_message => {
+            console.log(error_message)
             dispatch({ type:"LOGIN_FAILURE", ...error_message})
         }
         

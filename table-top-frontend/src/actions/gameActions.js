@@ -15,8 +15,10 @@ export function createGame(gameData){
     return (dispatch) => {
         console.log(gameData)
         new FetchRequest('http://localhost:3001/games/create', serializeGame(gameData))
-        .onSuccess(object => dispatch({type: "UPDATE_GAMES", payload: object}))
-        
+        .onSuccess(object => {
+            console.log(object)
+            dispatch({type: "UPDATE_GAMES", payload: object})
+        })
         .onFailure(() => {console.log('failure')})
         .startFetch()
     }

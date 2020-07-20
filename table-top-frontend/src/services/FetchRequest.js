@@ -11,11 +11,11 @@ class FetchRequest{
         }    
     }
     
-    constructor(url, data, method='GET'){
+    constructor(url, data, method='POST'){
         this.url = url
         this.data = data
         this.method = method
-        this.succees = console.log
+        this.success = console.log
         this.failure = console.log
         return this
     }
@@ -33,16 +33,14 @@ class FetchRequest{
     startFetch = () =>{
         fetch(this.url, this.serialize(this.data))
         .then(response => {
-            if(!response.ok){ throw response }
-            return response.json() 
-        })
-        .then( object => {
-            console.log(object)
-            return this.success(object)  
-        }) 
-        .catch(response => {
-            return this.failure(response)
-        })
+            const json = response.json()
+            console.log(json)
+            if(response.ok){
+                json.then( object => this.success(object)) 
+            } else {
+                json.then( object => this.failure(object))
+            }
+        }).catch( error => console.log(error) )
     }
 
 }

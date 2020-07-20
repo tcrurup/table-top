@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormCreator from '../../../FormCreator/FormCreator.js'
+import FormCreator, { createInputWithLabel } from '../../../FormCreator/FormCreator.js'
 import CreateFormSchema from '../../../FormCreator/CreateFormSchema.js'
 
 
@@ -19,16 +19,14 @@ class GameRoomInput extends Component{
             name: ''
         }
     }
-
+    
     render = () => <>
-        <FormCreator formSchema={this.formSchema()} />
+        <form onSubmit={this.handleSubmit}>
+            {createInputWithLabel('text', 'name', 'Name:', this.state.name, this.handleChange)}
+            <input type='submit' value='SUBMIT' />
+        </form>
     </>
     
-    formSchema(){
-        return new CreateFormSchema(this.handleSubmit, this.handleChange)
-        .addFieldToSchema('text', 'name', this.state.name, 'Game Name: ')
-        .finalize()
-    }
 
     handleChange = event => {
         event.preventDefault()

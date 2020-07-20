@@ -33,7 +33,7 @@ class LoginInput extends Component{
     render = () => <>
         <div id='login-form'>
             <h3>Welcome To Table Top!</h3> 
-            <span class='error'>{this.state.backendErrors}</span>
+            <span class='error'>{this.props.backendErrors}</span>
             <span className='error'> {this.state.formError} </span>
             {this.displayForm()}
         </div>

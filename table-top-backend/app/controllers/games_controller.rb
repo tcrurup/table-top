@@ -17,11 +17,11 @@ class GamesController < ApplicationController
         puts params
         user = User.find_by(id: game_params[:user_id])
         game_room = GameRoom.find_by(id: game_params[:id])
-        puts game_room.has_game?
         if user.has_room?(game_room)
             game_room.create_game(game_params[:name])
         end
-        render json: user.game_rooms
+        puts user
+        render json: UserSerializer.new(user).to_serialized_json
     end
 
     private

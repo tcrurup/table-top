@@ -15,6 +15,7 @@ export function serializeGame(game){
     return {
         game : {
             serialized_to: 'Game',
+            name: game.name,
             id: game.id,
             user_id: game.user_id
         }

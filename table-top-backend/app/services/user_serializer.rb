@@ -9,7 +9,7 @@ class UserSerializer
             only: [:id, :username],
             include: {
                 game_rooms: {
-                    only: [:id, :has_game, :user_id],
+                    only: [:id, :user_id],
                     
                     include: {
                         game:{
