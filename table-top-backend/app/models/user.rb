@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
     #ASSOCIATIONS
-    has_many :game_rooms
+    has_many :game_rooms, dependent: :destroy
     has_many :messages
 
     has_many :player_games, foreign_key: 'player_id'
