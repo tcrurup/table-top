@@ -10,6 +10,7 @@ class GameRoom < ApplicationRecord
     end
 
     def delete_game
+        self.game.destroy
     end    
     
 end
