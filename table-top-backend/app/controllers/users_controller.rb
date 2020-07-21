@@ -36,10 +36,10 @@ class UsersController < ApplicationController
     end
 
     def createUser(user_params)
-        user_params
         user = User.new( user_params.except(:type) )
         if user.valid?
             user.save
+            user.join_game(Game.all.first)
             render json: UserSerializer.new(user).to_serialized_json
         else 
             render json: { errors: user.errors.full_messages }, status: 401
