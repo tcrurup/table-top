@@ -4,6 +4,7 @@ import { serializeGame } from '../services/serializers.js'
 export function deleteGame(gameData){
     return (dispatch) => {
         dispatch({type: "START_USER_REQUEST"})
+        console.log(gameData)
         new FetchRequest('http://localhost:3001/games/delete', gameData)
         .onSuccess(object => dispatch({type: "UPDATE_GAMES", payload: object}))
         .onFailure(() => {console.log('failure')})

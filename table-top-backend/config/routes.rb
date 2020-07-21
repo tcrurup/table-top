@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   post '/games/load', to: 'games#load'
   post '/games/create', to: 'games#new_game_room'
+  post '/games/delete', to: 'games#destroy'
 
   
 end

@@ -6,9 +6,11 @@ class GamesController < ApplicationController
         render json: GameSerializer.new(game).to_serialized_json
     end
     
-    def delete
-        user = User.find_by(id: game_params[:user_id].to_i)
+    def destroy
+        user = User.find_by(id: params[:user_id].to_i)
+        puts user
         game_room = GameRoom.find(game_params[:id].to_i)
+        puts game_room
         game_room.delete_game #if user.has_room?(game_room)
         render json: user.game_rooms
     end

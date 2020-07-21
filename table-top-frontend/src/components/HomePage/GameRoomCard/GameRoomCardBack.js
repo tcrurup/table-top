@@ -5,6 +5,7 @@ import GameRoomInput from './GameRoomCardBack/GameRoomInput.js'
 const GameRoomCardBack = props => {
     if(props.game_room.game){
         return <GameRoomThumbnail 
+            userId={props.user.id}
             game={props.game_room.game} 
             loadGame={props.loadGame}
             deleteGame={props.deleteGame}    

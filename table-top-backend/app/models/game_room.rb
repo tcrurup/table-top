@@ -10,8 +10,6 @@ class GameRoom < ApplicationRecord
     end
 
     def delete_game
-        self.name=""
-        self.save
     end    
     
 end

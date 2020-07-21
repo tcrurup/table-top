@@ -44,9 +44,10 @@ export default function userReducer( state = userDefault, action){
 
         case "UPDATE_GAMES": 
             console.log("ACTION: UPDATE_GAMES")
+            console.log(action.payload)
             return{ 
                 ...state, 
-                game_rooms: action.payload.game_rooms.map( game => {
+                game_rooms: action.payload.map( game => {
                     return {...game, focus: false}
                 }), 
                 requesting: false 
