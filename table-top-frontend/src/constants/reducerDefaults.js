@@ -7,5 +7,5 @@ export const userDefault = {
     view: {
         route: '/login'
     },
-    games_a_part_of: []
+    games_user_part_of: []
 }

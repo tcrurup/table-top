@@ -13,6 +13,10 @@ class ChatBox extends Component{
         }
     }
 
+    componentWillUnmount(){
+        console.log(this.connection.connection.disconnect())
+    }
+
     componentDidMount(){
         if(this.props.game.id !==""){
             this.connection = new ChatConnection(

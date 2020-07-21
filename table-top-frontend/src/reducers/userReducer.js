@@ -47,7 +47,7 @@ export default function userReducer( state = userDefault, action){
             console.log(action.payload)
             return{ 
                 ...state, 
-                game_rooms: action.payload.map( game => {
+                game_rooms: action.payload.game_rooms.map( game => {
                     return {...game, focus: false}
                 }), 
                 requesting: false 

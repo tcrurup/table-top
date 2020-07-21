@@ -31,6 +31,7 @@ class FetchRequest{
     }
 
     startFetch = () =>{
+        console.log('starting fetch')
         fetch(this.url, this.serialize(this.data))
         .then(response => {
             const json = response.json()

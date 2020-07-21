@@ -25,7 +25,7 @@ class HomePage extends Component{
             < GameRoomList
                 user={this.props.user} 
                 gameRooms={this.props.user.game_rooms}
-                gamesWithCharacters={this.props.user.games_a_part_of} 
+                gamesWithCharacters={this.props.user.games_user_part_of} 
                 loadGame = {this.props.loadGame}
                 createGame = {this.props.createGame}
                 deleteGame = {this.props.deleteGame}
