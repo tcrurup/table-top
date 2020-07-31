@@ -21,7 +21,8 @@ export default function userReducer( state = userDefault, action){
            }
 
         case "LOGIN_FAILURE":
-        console.log(action)   
+        console.log(action) 
+        console.log(action.errors)  
         return{
                ...state,
                errors: action.errors, 

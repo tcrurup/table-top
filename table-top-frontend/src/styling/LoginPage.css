@@ -29,7 +29,7 @@ div.spinning-loader{
     animation: spin 2s linear infinite
 }
 
-span.error{
+ul.error{
     font-size: 12px;
     font-weight: bold;
     color: red;

@@ -8,15 +8,17 @@ import SpinningLoader from '../SpinningLoader/SpinningLoader.js'
 
 /********PROPS********\
 
-    errors - hash containing any errors that were received from the server
-    submit - calls the dispatch action to submit details to backend
+errors - hash containing any errors that were received from the server
+submit - calls the dispatch action to submit details to backend
+backendErrors - array of errors that occur on the backend
 
 \********PROPS********/
-const loginInputDefault = {
+
+const defaultState = {
     username: '',
     password: '',
     passwordConfirm: '',
-    formError: false,
+    formError: [],
     email: '',
     type: 'LOGIN',
 }
@@ -26,15 +28,14 @@ class LoginInput extends Component{
     constructor(props){
         super(props)
         this.state = {
-            ...loginInputDefault
+            ...defaultState
         }
     }
 
     render = () => <>
         <div id='login-form'>
             <h3>Welcome To Table Top!</h3> 
-            <span class='error'>{this.props.backendErrors}</span>
-            <span className='error'> {this.state.formError} </span>
+            {this.errors()}
             {this.displayForm()}
         </div>
     </>
@@ -57,13 +58,25 @@ class LoginInput extends Component{
         }        
     }
 
+    errors = () => <ul className='error'> 
+        {[...this.state.formError, ...this.props.backendErrors].map(error => {
+            return <li>{error}</li>
+        })}
+
+    </ul>
+
+    setFormError = error => {
+        this.setState({formError: [error] })
+    }
+ 
+
     handleSubmit = event => {
 
         const verified = () => {
             let verified = true
         if(this.state.type === 'SIGNUP'){
             if(this.state.password !== this.state.passwordConfirm){ 
-                this.setState({ formError: 'Passwords need to match' })
+                this.setFormError('Passwords need to match')
                 verified = false
             }
         }
@@ -73,7 +86,7 @@ class LoginInput extends Component{
         event.preventDefault()
         if(verified()){  
             this.props.submit(serializeLoginAttempt(this.state) /*Imported function*/)
-            this.setState({...loginInputDefault})//Reset form state and fields
+            this.setState({...defaultState})//Reset form state and fields
         }
     }
 

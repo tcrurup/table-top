@@ -1,26 +1,31 @@
 import React, { Component } from 'react'
 import './dice.css'
 
+//Default settings for this component
 const diceSettings = {
     angleUpdateInterval: 16,
     defaultSizeInPixels: 80,
     rollingDelta: 10,
     numberSizeInPixels: 40,
-    gravity: 1,
+    gravity: .2,
     maxHeight: 240,  //12"
     throwingHeight: 180, //9"
     minHeight: 50
 }
 
 /*The field that the dice are thrown onto is considered to be a top down view with an
-infinitely high ceiling.  The initial toll provides some upwards momentum then everything
-after that is calculated using a physics formula*/
+infinitely high ceiling.  The initial roll provides some upwards momentum then everything
+after that is calculated using a modified formula for a parabola (X^a+ Xb + C)
 
-/*Calculating instantaneous veloicity
-Followed information found - https://www.omnicalculator.com/physics/velocity#how-to-calculate-velocity-speed-vs-velocity
-Using a 9" starting height, should take about .75 seconds to reach the ground
-Follows the graph -x^2+10x+180 to map height stating at (0, 180) to give it some slight up throw
 
+
+
+//Calculates height based on parabola formula height = (-aX^2+ Xb + C)
+where x is the number of frames that has occured (default 60 fps)
+
+a => increases or decreases the duration it takes for the die to drop
+b => 0 starts the dice level, 0+ gives it an initial toss up, 0- initial toss down
+c => starting height of the throw
 
 
 */
@@ -44,32 +49,30 @@ class D6Dice extends Component{
         this.state = {
             ...defaultState
         }
-        this.interval = null;   
+        this.interval = null; //Coontrols when the animation starts   
     }
 
     rotateXYZ(xDelta, yDelta, zDelta){
-        const currentRotations = this.state.xyzRotation
-        const currentVelocities = this.state.xyzVelocity
-
+        
         const calcDegree = (current, delta) => {
+            //Keeps the rotation within the range of 0 to 360
             const total = parseFloat(current) + parseFloat(delta) 
             return total > 360 ? total - 360 : total
         }
         
+        const currentRotations = this.state.xyzRotation
+        const currentVelocities = this.state.xyzVelocity
+
         let x = calcDegree(currentRotations[0], currentVelocities[0])
         let y = calcDegree(currentRotations[1], currentVelocities[0])
         let z = calcDegree(currentRotations[2], currentVelocities[0])
         
-        const newRotation = [x,y,z]
-        console.log(newRotation)
-        this.setState({ 
-            xyzRotation: [x, y, z]       
-        })
+        this.setState({ xyzRotation: [x, y, z] })
     }
 
     rollDice = () => {
         this.rotateXYZ()
-        this.adjustHeight()
+        this.calculateHeight()
         const frames = this.state.frameCount
         this.setState({ frameCount: frames + 1 })
         if(this.state.height <= 51){
@@ -80,6 +83,7 @@ class D6Dice extends Component{
     throwDice = () => {
         this.setState({...defaultState})
         this.setRotationVelocity()
+        //Start the animation by setting the interval
         this.interval = setInterval(this.rollDice, diceSettings.angleUpdateInterval);
     }
 
@@ -106,21 +110,24 @@ class D6Dice extends Component{
         return rand * randPosOrNeg
     }
 
-    adjustHeight = () => {
-        let verticalVel = this.state.verticalVel
+    calculateHeight = () => {
+        //(-aX^2+ Xb + C)
+        
         const gravity = this.state.gravity
         const frameCount = this.state.frameCount
         
-        let height = (-1 * Math.pow(frameCount, 2))+ (frameCount * 10) + 180
+        let height = (-gravity * Math.pow(frameCount, 2))+ (frameCount * 10) + 180
         this.setState({
-            verticalVel,
             height,
             sizeInPixels: height
         })
     }
 
 
-    bounce = () => {}
+    bounce = () => {
+        //When the dice hits the 'table' it needs to bounce back up using a formula for a porabola that 
+        //starts at (0,0)
+    }
 
     MAPPED_SIDES = (sideNumber) => {
         const zTrans = this.state.sizeInPixels/2
