@@ -62,7 +62,6 @@ class LoginInput extends Component{
         {[...this.state.formError, ...this.props.backendErrors].map(error => {
             return <li>{error}</li>
         })}
-
     </ul>
 
     setFormError = error => {

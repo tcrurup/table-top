@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../actions/userActions.js'
-import LoginInput from '../components/LoginPage/LoginInput.js'
+import LoginInput from '../components/LoginInput/LoginInput.js'
 import D6Dice from '../components/Dice/D6Dice.js'
 import '../styling/LoginPage.css'
 
