@@ -21,9 +21,13 @@ class GameRoomInput extends Component{
     }
     
     render = () => <>
-        <form onSubmit={this.handleSubmit}>
+        <form>
             {createInputWithLabel('text', 'name', 'Name:', this.state.name, this.handleChange)}
-            <input type='submit' value='SUBMIT' />
+            
+            <div class='button-container'>
+                <button type='button' onClick={this.handleSubmit}>SUBMIT</button>            
+            </div>
+            
         </form>
     </>
     
@@ -40,7 +44,6 @@ class GameRoomInput extends Component{
             user_id: this.props.userId,
             id: this.props.gameId
         }
-        console.log(data)
         this.props.onSubmit(data)
     }
 }
