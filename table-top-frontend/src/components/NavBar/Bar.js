@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import NavOption from './NavOption.js'
 
-const Bar = props => <div id='navbar'>
-    {console.log(props)}
-    {
-        Object.keys(props.options).map( key => {
-            return <NavOption name={key} onClick={props.options[key]} />
-        })
+class Bar extends Component{
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            isHidden: true
+        }
     }
-</div>
+
+    get className(){ return `navbar scrolled-${this.state.isHidden ? "up" : "down"}` }
+
+    render(){ 
+     return( 
+     <div className='navbar container'
+        onMouseEnter={() => this.setState({ isHidden: false })}
+        onMouseLeave={() => this.setState({ isHidden: true })}   
+    >
+        <div id='navbar' className={this.className}>
+        {
+            Object.keys(this.props.options).map( key => {
+                return <NavOption name={key} onClick={this.props.options[key]} />
+            })
+        }
+        </div>
+    </div>
+    )}
+
+} 
 
 export default Bar
-
