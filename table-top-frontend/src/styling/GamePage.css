@@ -7,6 +7,19 @@
     top: 0;
 }
 
+div.button-container{
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+div.button-container button{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
 #chat-box form{
     width: 100%;
     position: absolute;
