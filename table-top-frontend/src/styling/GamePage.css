@@ -8,6 +8,34 @@
     src: url("../fonts/Lora-Bold.ttf")
 }
 
+body, html{
+    height: 100%;
+}
+
+div#root{
+    height: 100%;
+}
+
+div.column{
+    float: left;
+    height: 100%;
+}
+
+div.left{
+    width: 25%;
+    background-color: red;
+}
+
+div.right{
+    width: 25%;
+    background-color: yellow;
+}
+
+div.middle{
+    width: 50%;
+    background-color: green;
+}
+
 div.game-name{
     font-size: 24px;
     color: rgb(247, 255, 177);
