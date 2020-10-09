@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { loadGame, createGame, deleteGame, focusCard, flipCardToFront } from '../actions/gameActions.js'
 import { logout, deleteUser } from '../actions/userActions.js'
 import '../styling/GameRoomList.css'
+import '../styling/AppStyling.css'
 
 class HomePage extends Component{
     

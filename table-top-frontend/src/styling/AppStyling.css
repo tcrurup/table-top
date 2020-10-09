@@ -1,0 +1,33 @@
+div.friends-list-container{
+    width: 90%;
+    height: 90%;
+    border: 2px solid black;
+}
+
+div.friends-list{
+    width: 95%;
+    height: 85%;
+    margin: 5px auto;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+div.friends-list-search-box-container{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input.friends-list-search-box{
+    width: 72%;
+    height: 20px;
+}
+
+button.friends-list-search-submit{
+    width: 20%;
+    height: 24px;
+    margin-left: 3px;
+    min-width: 55px;
+}
