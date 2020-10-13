@@ -37,7 +37,7 @@ class HomePage extends Component{
                 />
             </div>
             <div class="column right">
-                < FriendsList />
+                < FriendsList user={this.props.user}/>
             </div>
         </> 
     }
