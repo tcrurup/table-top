@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/games/load', to: 'games#load'
   post '/games/create', to: 'games#new_game_room'
   post '/games/delete', to: 'games#destroy'
+  
+  post '/friends/friends_of_user', to: 'friends#all_friends_of_user'
 
   
 end

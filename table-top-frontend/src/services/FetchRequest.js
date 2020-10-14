@@ -20,6 +20,7 @@ class FetchRequest{
         return this
     }
 
+
     onSuccess = func => {
         this.success = func
         return this   
@@ -42,6 +43,11 @@ class FetchRequest{
                 json.then( object => this.failure(object))
             }
         }).catch( error => console.log(error) )
+    }
+
+    static create(url, data){
+        const fetchRequest = new FetchRequest(url, data)
+        return fetchRequest
     }
 
 }

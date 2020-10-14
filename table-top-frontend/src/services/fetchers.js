@@ -1,10 +1,9 @@
-import { serializePostData } from './serializers.js'
 import FetchRequest from '../services/FetchRequest'
 
-export function fetchLoadGame(serializedData, onSuccess, onFailure = x => console.log(x)){
-    new FetchRequest('http://localhost:3001/games/load', serializePostData(serializedData))
-    .onSuccess(onSuccess)
-    .onFailure(onFailure)
-    .send()
+export function fetchFriendsOfUser(userId){
+    const fetch = FetchRequest.create('http://localhost:3001/friends/friends_of_user', { user_id: userId })
+    fetch.onSuccess(console.log('success'))
+    fetch.onFailure(console.log('failure'))
+    fetch.startFetch()
 }
 
