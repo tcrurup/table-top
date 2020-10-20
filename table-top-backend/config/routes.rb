@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/games/delete', to: 'games#destroy'
   
   post '/friends/friends_of_user', to: 'friends#all_friends_of_user'
+  post '/friends/search', to: 'friends#search'
 
   
 end

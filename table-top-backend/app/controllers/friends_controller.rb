@@ -5,9 +5,14 @@ class FriendsController < ApplicationController
         render json: FriendSerializer.new(self.user.friends).to_serialized_json
     end
 
-    def friend_params
-        params.require(:friend).permit(:user_id)
+    def search
+        self.user = User.find(friend_params[:user_id])
+        render json: FriendSerializer.new(User.find_by username: friend_params[:search_input]).to_serialized_json 
     end
+
+    def friend_params
+        params.require(:friend).permit(:user_id, :search_input)
+    end    
 
     def user
         @user

@@ -13,6 +13,7 @@ class FriendsList extends Component{
     }
 
     get userId(){ return this.props.user.id }
+    get searchInput(){ return this.state.searchInput }
 
     componentDidMount(){
         this.getFriends()
@@ -24,9 +25,15 @@ class FriendsList extends Component{
         fetch.startFetch()
     }
 
+    searchForUser(){
+        const fetch = FetchRequest.create('http://localhost:3001/friends/search', { user_id: this.userId, search_input: this.searchInput })
+        fetch.startFetch()
+    }
+
     handleChange = event => { event.preventDefault(); this.setState({ searchInput: event.target.value }); }
     handleSubmit = event => { 
         event.preventDefault();
+        this.searchForUser()
     }
 
     render(){
@@ -35,7 +42,6 @@ class FriendsList extends Component{
                 <div class="friends-list-header">Your friends</div>
                 <div class="friends-list">
                     { this.state.friends.map(friend => {
-                        console.log(friend)
                         return <FriendBox key={friend.id} friend={friend}/>
                     })}
                 </div>
