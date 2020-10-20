@@ -1,19 +1,29 @@
 class FriendsController < ApplicationController
 
     def all_friends_of_user
-        self.user = User.find(friend_params[:user_id])
-        render json: FriendSerializer.new(self.user.friends).to_serialized_json
+        self.set_user
+        render json: self.serialize(self.user.friends)
     end
 
     def search
-        self.user = User.find(friend_params[:user_id])
-        render json: FriendSerializer.new(User.find_by username: friend_params[:search_input]).to_serialized_json 
+        self.set_user
+        render json: self.serialize(User.find_by username: friend_params[:search_input])
     end
+    
+    private
 
     def friend_params
         params.require(:friend).permit(:user_id, :search_input)
-    end    
+    end 
 
+    def set_user
+        self.user = User.find(friend_params[:user_id])
+    end
+
+    def serialize(friend_obj)
+        FriendSerializer.new(friend_obj).to_serialized_json
+    end
+    
     def user
         @user
     end
