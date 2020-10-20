@@ -6,10 +6,7 @@ class GameSerializer
 
     def to_serialized_json
         options = {
-            only: [
-                :id,
-                :name
-            ]
+            only: [:id, :name]
         }   
         @game.to_json(options)
     end

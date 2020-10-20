@@ -2,7 +2,7 @@ class FriendsController < ApplicationController
 
     def all_friends_of_user
         self.user = User.find(friend_params[:user_id])
-        render json: self.user.friends
+        render json: FriendSerializer.new(self.user.friends).to_serialized_json
     end
 
     def friend_params

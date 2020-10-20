@@ -34,7 +34,10 @@ class FriendsList extends Component{
             <div class="friends-list-container">
                 <div class="friends-list-header">Your friends</div>
                 <div class="friends-list">
-                    { this.state.friends.map(friend => <FriendBox key={friend.id} friend={friend}/>) }
+                    { this.state.friends.map(friend => {
+                        console.log(friend)
+                        return <FriendBox key={friend.id} friend={friend}/>
+                    })}
                 </div>
                 <div class="friends-list-search-box-container">
                     <input class="friends-list-search-box" type="text" onInput={this.handleChange} value={this.searchInput}/>
